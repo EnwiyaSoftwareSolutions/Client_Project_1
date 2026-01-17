@@ -70,14 +70,14 @@ export function ContactForm() {
             <div className="grid gap-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="text-gray-200 bg-black border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
                   name="name"
                   placeholder="Full name"
                   value={values.name}
                   onChange={onChange}
                 />
                 <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="text-gray-200 bg-black border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
                   name="email"
                   type="email"
                   placeholder="Email address"
@@ -88,14 +88,14 @@ export function ContactForm() {
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="text-gray-200 bg-black border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
                   name="phone"
                   placeholder="Phone (optional)"
                   value={values.phone}
                   onChange={onChange}
                 />
                 <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="text-gray-200 bg-black border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
                   name="subject"
                   placeholder="Subject"
                   value={values.subject}
@@ -109,7 +109,7 @@ export function ContactForm() {
                 value={values.message}
                 onChange={onChange}
                 className={cn(
-                  "min-h-[120px] w-full resize-none rounded-md border bg-[#323232] px-3 py-2 text-sm shadow-xs text-gray-200",
+                  "min-h-[120px] w-full resize-none rounded-md border bg-black px-3 py-2 text-sm shadow-xs text-gray-200",
                   "border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500 focus:ring-[3px]",
                   "text-sm md:text-base"
                 )}
