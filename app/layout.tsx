@@ -8,7 +8,9 @@ return (
 <html lang="en">
 <body className="bg-background text-foreground">
 <Navbar />
-<main className="min-h-screen px-6 md:px-12">{children}</main>
+{/* <main className="min-h-screen px-6 md:px-12">{children}</main> */}
+<main>{children}</main>
+
 <Footer />
 </body>
 </html>
