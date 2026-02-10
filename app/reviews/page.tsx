@@ -17,20 +17,20 @@ export default function Reviews() {
 
         <section className="grid gap-8 md:grid-cols-2">
           <div>
-            <div className="rounded-lg border border-yellow-400 bg-gray-800 p-6 shadow-lg">
-              <h2 className="mb-4 text-xl font-medium text-yellow-400">Featured Testimonials</h2>
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-8 flex flex-col items-start">
+              <h2 className="mb-4 text-xl font-bold text-yellow-300">Featured Testimonials</h2>
               <ReviewCarousel />
+              <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none">★</span>
             </div>
           </div>
 
           <aside>
-            <div className="space-y-4">
-              <h2 className="text-xl font-medium text-yellow-400">Recent Reviews</h2>
-              <p className="text-sm text-gray-400">Browse recent feedback from clients.</p>
-
-              <div className="mt-4 space-y-4">
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-8">
+              <h2 className="text-xl font-bold text-yellow-300 mb-2">Recent Reviews</h2>
+              <p className="text-sm text-gray-400 mb-4">Browse recent feedback from clients.</p>
+              <div className="space-y-4">
                 {reviews.slice(0, 6).map((r) => (
-                  <article key={r.id} className="flex items-start gap-4 rounded-md border border-yellow-400 bg-gray-900 p-4">
+                  <article key={r.id} className="flex items-start gap-4 rounded-lg border border-yellow-400 bg-[#1a1a1a] p-4 shadow group hover:scale-[1.02] transition-transform">
                     <img
                       src={r.image}
                       alt={r.name}
@@ -47,6 +47,7 @@ export default function Reviews() {
                   </article>
                 ))}
               </div>
+              <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none">★</span>
             </div>
           </aside>
         </section>

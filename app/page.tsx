@@ -65,24 +65,34 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold text-yellow-400 text-center mb-12">
             Our Services
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-800 p-6 rounded-lg border border-yellow-400">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-4">Corporate Law</h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
+              <h3 className="text-xl font-bold text-yellow-300 mb-4">Corporate Law</h3>
               <p className="text-gray-300">
-                Comprehensive legal support for businesses, including contracts, mergers, and compliance.
+                Strategic counsel for entrepreneurs and companies, including entity formation, contracts, acquisitions, and succession planning.
               </p>
+              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">⚖️</span>
             </div>
-            <div className="bg-gray-800 p-6 rounded-lg border border-yellow-400">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-4">Criminal Defense</h3>
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
+              <h3 className="text-xl font-bold text-yellow-300 mb-4">Estate Planning</h3>
               <p className="text-gray-300">
-                Aggressive defense strategies to protect your rights and achieve the best possible outcomes.
+                Personalized estate plans, wills, trusts, and asset protection to secure your legacy and provide peace of mind for your family.
               </p>
+              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">📜</span>
             </div>
-            <div className="bg-gray-800 p-6 rounded-lg border border-yellow-400">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-4">Family Law</h3>
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
+              <h3 className="text-xl font-bold text-yellow-300 mb-4">Probate</h3>
               <p className="text-gray-300">
-                Sensitive handling of divorce, custody, and other family-related legal matters.
+                Guidance through probate and trust administration, asset management, and resolution of estate matters with care and clarity.
               </p>
+              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">🏛️</span>
+            </div>
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
+              <h3 className="text-xl font-bold text-yellow-300 mb-4">Immigration</h3>
+              <p className="text-gray-300">
+                Comprehensive immigration services, including family petitions, status adjustments, citizenship, and legal advising.
+              </p>
+              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">🌎</span>
             </div>
           </div>
         </div>
@@ -96,17 +106,19 @@ export default function Home() {
             What Our Clients Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-800 p-6 rounded-lg border border-yellow-400">
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
               <p className="text-gray-300 italic mb-4">
                 "Enwiya Lawfare provided exceptional service and helped me navigate a complex legal issue with ease."
               </p>
               <p className="text-yellow-400 font-semibold">- John Doe, Client</p>
+              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">★</span>
             </div>
-            <div className="bg-gray-800 p-6 rounded-lg border border-yellow-400">
+            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
               <p className="text-gray-300 italic mb-4">
                 "Professional, knowledgeable, and dedicated. Highly recommend their services."
               </p>
               <p className="text-yellow-400 font-semibold">- Jane Smith, Client</p>
+              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">★</span>
             </div>
           </div>
         </div>
