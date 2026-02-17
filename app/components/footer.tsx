@@ -1,11 +1,17 @@
-
+"use client"
 import Link from "next/link"
 import { Separator } from "./ui/separator"
 import logoImage from '../../utils/img/fulllogo_transparent.png'
+import { usePathname } from "next/navigation"
+
 
 
 export function Footer() {
+  const pathname = usePathname();
+
   return (
+    <div>
+       {pathname.startsWith("/AdminPage") ? null : (
     <footer className="bg-[#0000007a] text-zinc-300">
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
@@ -34,17 +40,17 @@ export function Footer() {
               </li>
               <li>
                 <Link href="#" className="hover:text-[#d4af37] transition">
-                  Criminal Defense
+                  Estate Planning
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-[#d4af37] transition">
-                  Family Law
+                  Probate
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-[#d4af37] transition">
-                  Civil Litigation
+                  Immigration
                 </Link>
               </li>
             </ul>
@@ -86,7 +92,7 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>📍 New York, NY</li>
-              <li>📞 (212) 555-0198</li>
+              <li>📞  </li>
               <li>✉️ contact@enwiyalawfare.com</li>
             </ul>
           </div>
@@ -106,5 +112,7 @@ export function Footer() {
         </div>
       </div>
     </footer>
+       )}
+    </div>
   )
 }

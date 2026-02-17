@@ -1,8 +1,18 @@
-// ...existing code...
+"use client"
+
+import { useEffect } from "react"
+
 import ReviewCarousel from "../components/ui/Review"
-import reviews from "../data/review"
+import useReviews from "../../store/useReviews"
 
 export default function Reviews() {
+  const { reviews, isLoading, isError, fetchReviews } = useReviews()
+
+  useEffect(() => {
+    if (reviews.length === 0 && !isLoading) {
+      void fetchReviews()
+    }
+  }, [fetchReviews, isLoading, reviews.length])
   return (
     <main className="min-h-screen text-white">
       <div className="container mx-auto max-w-6xl px-6 py-16">
@@ -28,7 +38,13 @@ export default function Reviews() {
             <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-8">
               <h2 className="text-xl font-bold text-yellow-300 mb-2">Recent Reviews</h2>
               <p className="text-sm text-gray-400 mb-4">Browse recent feedback from clients.</p>
-              <div className="space-y-4">
+              <div className="theme-scrollbar space-y-4 max-h-[600px] overflow-y-auto p-[8px] pr-2">
+                {isError && (
+                  <p className="text-sm text-red-300">Unable to load reviews right now.</p>
+                )}
+                {isLoading && reviews.length === 0 && (
+                  <p className="text-sm text-gray-400">Loading reviews...</p>
+                )}
                 {reviews.slice(0, 6).map((r) => (
                   <article key={r.id} className="flex items-start gap-4 rounded-lg border border-yellow-400 bg-[#1a1a1a] p-4 shadow group hover:scale-[1.02] transition-transform">
                     <img
