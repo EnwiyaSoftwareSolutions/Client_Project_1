@@ -1,7 +1,22 @@
-import Image from "next/image";
-import Law from "./components/pArea/lawArea";
+"use client"
+import { useEffect, type CSSProperties } from "react"
+import Image from "next/image"
+import Link from "next/link"
+// import Law from "./components/pArea/lawArea";
+import useReviews from "store/useReviews"
+
 
 export default function Home() {
+  const {reviews, isLoading, isError, fetchReviews}=useReviews()
+
+  const marqueeReviews = reviews.length > 0 ? [...reviews, ...reviews] : []
+
+  useEffect(()=>{
+    if(reviews.length===0 && !isLoading){
+      void fetchReviews()
+    }
+  },[fetchReviews, isLoading, reviews.length])
+
   return (
     <div className="min-h-screen  text-white">
       {/* <Law /> */}
@@ -101,26 +116,46 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <section className="py-16 px-6">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-full">
           <h2 className="text-3xl md:text-4xl font-bold text-yellow-400 text-center mb-12">
             What Our Clients Say
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
-              <p className="text-gray-300 italic mb-4">
-                "Enwiya Lawfare provided exceptional service and helped me navigate a complex legal issue with ease."
-              </p>
-              <p className="text-yellow-400 font-semibold">- John Doe, Client</p>
-              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">★</span>
+          {isError && (
+            <p className="mb-6 text-center text-sm text-red-300">
+              Unable to load reviews right now.
+            </p>
+          )}
+          {isLoading && reviews.length === 0 && (
+            <p className="mb-6 text-center text-sm text-gray-400">
+              Loading reviews...
+            </p>
+          )}
+          {!isLoading && !isError && reviews.length === 0 && (
+            <p className="mb-6 text-center text-sm text-gray-400">
+              No reviews available yet.
+            </p>
+          )}
+          {reviews.length > 0 && (
+            <div className="review-marquee">
+              <div
+                className="review-track"
+                style={{ "--review-marquee-duration": "25s" } as CSSProperties}
+              >
+                {marqueeReviews.map((r, index) => (
+                  <div
+                    key={`${r.id}-${index}`}
+                    className="review-card relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start"
+                  >
+                    <p className="text-gray-300 italic mb-4">
+                      {r.text}
+                    </p>
+                    <p className="text-yellow-400 font-semibold">- {r.name}</p>
+                    <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">★</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-6 flex flex-col items-start">
-              <p className="text-gray-300 italic mb-4">
-                "Professional, knowledgeable, and dedicated. Highly recommend their services."
-              </p>
-              <p className="text-yellow-400 font-semibold">- Jane Smith, Client</p>
-              <span className="absolute right-6 top-6 opacity-10 text-6xl pointer-events-none select-none">★</span>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -132,9 +167,11 @@ export default function Home() {
           </h2>
           <p className="text-gray-300 text-lg mb-8">
             Contact us today for a free consultation and let us help you with your legal needs.
-          </p>
-          <button className="bg-yellow-400 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition">
+            </p>
+            <button>
+          <Link href="/contact" className="bg-yellow-400 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition">
             Contact Us
+          </Link>
           </button>
         </div>
       </section>

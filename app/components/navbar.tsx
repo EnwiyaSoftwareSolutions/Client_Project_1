@@ -34,7 +34,9 @@ export function Navbar() {
   }, [open])
 
   return (
-    <div>
+    
+    <div >
+      {pathname.startsWith("/AdminPage") ? null : (
     <header className="relative sticky top-0 z-50 w-full bg-[#0000007a]/95 backdrop-blur  border-border">
       {/* Absolute logo anchored to the far left */}
       <Link href="/" className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2">
@@ -106,6 +108,7 @@ export function Navbar() {
 
       </div>
     </header>
+    )}
 
       {/* Mobile menu panel */}
       {open && (
@@ -150,7 +153,9 @@ export function Navbar() {
             </div>
           </nav>
         </div>
-      )}
+      
+          )}
     </div>
+
   )
 }
