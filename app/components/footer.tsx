@@ -12,16 +12,16 @@ export function Footer() {
   return (
     <div>
        {pathname.startsWith("/AdminPage") ? null : (
-    <footer className="bg-[#0000007a] text-zinc-300">
+    <footer className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/20 via-[var(--primary-accent)]/8 to-transparent text-[var(--muted-foreground)]">
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           
           {/* Brand */}
           <div>
-            <h2 className="text-xl font-semibold tracking-wide text-[#d4af37]">
-              <img src={logoImage.src} alt="Enwiya Lawfare Logo" className="h-10 md:h-50 w-auto" />
+            <h2 className="text-xl font-semibold tracking-wide text-[var(--primary-accent)]">
+              <img src={logoImage.src} alt="Enwiya Lawfare Logo" className=" w-auto" />
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+            <p className="mt-4 text-sm leading-relaxed text-[var(--muted-foreground)]">
               Dedicated to justice, integrity, and results. Providing
               strategic legal representation with professionalism and care.
             </p>
@@ -29,12 +29,12 @@ export function Footer() {
 
           {/* Practice Areas */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-200">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
               Practice Areas
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="hover:text-[#d4af37] transition">
+                <Link href="#" className="hover:text-[var(--primary-accent)] transition">
                   Corporate Law
                 </Link>
               </li>
@@ -58,12 +58,12 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-200">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
               Company
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-[#d4af37] transition">
+                <Link href="/about" className="hover:text-[var(--primary-accent)] transition">
                   About Us
                 </Link>
               </li>
@@ -87,10 +87,10 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-200">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">
               Contact
             </h3>
-            <ul className="space-y-2 text-sm text-zinc-400">
+            <ul className="space-y-2 text-sm text-[var(--muted-foreground)]">
               <li>📍 New York, NY</li>
               <li>📞  </li>
               <li>✉️ contact@enwiyalawfare.com</li>
@@ -99,10 +99,10 @@ export function Footer() {
 
         </div>
 
-        <Separator className="my-10 bg-zinc-800" />
+        <Separator className="my-10 bg-[var(--border)]" />
 
         {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-4 text-sm text-zinc-500 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 text-sm text-[var(--muted-foreground)] md:flex-row">
           <p>
             © {new Date().getFullYear()} Enwiya Lawfare. All rights reserved.
           </p>

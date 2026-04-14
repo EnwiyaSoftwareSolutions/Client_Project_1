@@ -11,6 +11,7 @@ import React, { useState } from "react";
 // import { Button } from "../components/ui/button";
 
 const About = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 //   const [propSelect, setPropSelect] = useState<string>("");
 
 //   const onPropClick = (prop: string) => {
@@ -18,7 +19,7 @@ const About = () => {
 //   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen  text-white">
+    <div className="flex flex-col lg:flex-row min-h-screen text-[var(--foreground)]">
       <main className="flex-1 min-h-screen">
         <div className="container mx-auto px-6 py-12 max-w-4xl">
           {/* Header Section */}
@@ -29,10 +30,10 @@ const About = () => {
               className="w-24 h-24 rounded-full mr-6 object-cover mb-4 md:mb-0"
             />
             <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-[var(--headder-text-color)] mb-4">
                 About David Andrew Enwiya
               </h1>
-              <p className="text-gray-300 text-lg">
+              <p className="text-[var(--muted-foreground)] text-lg">
                 Founding and Managing Attorney of Enwiya Law Firm PLLC
               </p>
             </div>
@@ -40,10 +41,10 @@ const About = () => {
 
           {/* Biography Section */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-yellow-400 mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">
               Biography
             </h2>
-            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed mb-6">
               David Andrew Enwiya is the founding and managing attorney of Enwiya
               Law Firm PLLC, where he advises and represents clients in corporate
               law, estate planning, probate and trust administration, and
@@ -51,7 +52,7 @@ const About = () => {
               and business owners through some of the most consequential legal
               decisions they will face.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">
               Whether assisting entrepreneurs with structuring and protecting their
               businesses, helping families preserve wealth and plan for the future,
               navigating probate and trust administration, or advising clients
@@ -66,17 +67,17 @@ const About = () => {
 
           {/* Education Section */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-yellow-400 mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">
               Education
             </h2>
-            <p className="text-gray-300 text-lg leading-relaxed mb-4">
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed mb-4">
               Born in Chicago, Illinois, David relocated with his family after his
               childhood to Phoenix, Arizona. He earned his Bachelor of Science in
               Criminology and Criminal Justice, with a minor in Philosophy, from
               Arizona State University in 2014, and his Juris Doctor from Arizona
               Summit Law School in 2018.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">
               During law school, David distinguished himself through academic
               leadership and service. He served as Executive Articles Editor of the
               Law Review, worked as a teaching assistant for multiple courses—including
@@ -92,20 +93,20 @@ const About = () => {
           {/* Practice Areas Section */}
 
           <section className="mb-12">
-            {/* <h2 className="text-2xl font-semibold text-yellow-400 mb-6">Areas of Practice</h2> */}
+            {/* <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-6">Areas of Practice</h2> */}
             <div className="flex flex-col gap-10">
               {[
                 {
                   key: "Practice",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z"/></svg></span>
                   ),
                   title: "Areas of Practice",
                   content: (
                     <>
                       {/* <p className="text-gray-300 mb-2">Building and operating a successful business requires more than a strong idea—it requires a solid legal foundation. From formation through growth, transition, or exit, business owners face complex legal decisions that can significantly affect their operations, personal liability, and long-term goals. Clear legal guidance at each stage is essential to protecting both the business and the people behind it.</p>
                       <p className="text-gray-300 mb-2">Enwiya Law Firm works closely with entrepreneurs, professionals, and established companies to provide practical, strategic counsel tailored to their unique needs. We take the time to understand how each business operates, the risks it faces, and the objectives it seeks to achieve. Our approach emphasizes thoughtful planning, careful drafting, and proactive problem-solving, allowing clients to make informed decisions with confidence.</p> */}
-                      <ul className="list-disc list-inside text-gray-200 mb-2">
+                      <ul className="list-disc list-inside text-[var(--muted-foreground)] mb-2">
                         <li>Business Corporate Law</li>
                         <li>Contract Law</li>
                         <li>Immigration Law</li>
@@ -119,7 +120,7 @@ const About = () => {
                 {
                   key: "Admission",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></span>
                   ),
                   title: "Bar Admissions",
                   content: (
@@ -139,7 +140,7 @@ const About = () => {
                 {
                   key: "Education",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
                   ),
                   title: "Education",
                   content: (
@@ -148,11 +149,11 @@ const About = () => {
                       {/* <p className="text-gray-300 mb-2">At Enwiya Law Firm, we guide personal representatives, trustees, and beneficiaries through the probate and trust administration process with care, clarity, and efficiency. Our approach emphasizes clear communication, practical problem-solving, and diligent administration, helping clients understand their responsibilities while minimizing stress and uncertainty. We work to ensure that estates and trusts are administered properly, efficiently, and in accordance with the law and the decedent’s intentions.</p> */}
                       <ul className="space-y-4 mb-2">
                         <li className="flex items-start gap-3">
-                          {/* <span className="text-yellow-400 text-xl">🎓</span> */}
+                          {/* <span className="text-[var(--headder-text-color)] text-xl">🎓</span> */}
                           <div>
-                            <span className="font-semibold text-gray-200">Arizona Summit Law School</span><br />
-                            <span className="text-gray-400">Phoenix, Arizona</span><br />
-                            <span className="text-gray-300">Juris Doctor – 2018</span>
+                            <span className="font-semibold text-[var(--muted-foreground)]">Arizona Summit Law School</span><br />
+                            <span className="text-[var(--muted-foreground)]">Phoenix, Arizona</span><br />
+                            <span className="text-[var(--muted-foreground)]">Juris Doctor – 2018</span>
                             <ul className="mt-2 ml-4 text-sm  space-y-1">
                               <li>President of the Student Bar Association</li>
                               <li>Executive Articles Editor of Law Review</li>
@@ -162,12 +163,12 @@ const About = () => {
                           </div>
                         </li>
                         <li className="flex items-start gap-3">
-                          {/* <span className="text-yellow-400 text-xl">🎓</span> */}
+                          {/* <span className="text-[var(--headder-text-color)] text-xl">🎓</span> */}
                           <div>
-                            <span className="font-semibold text-gray-200">Arizona State University</span><br />
-                            <span className="text-gray-300">B.S. – 2014</span><br />
-                            <span className="text-gray-300">Major: Criminology and Criminal Justice</span><br />
-                            <span className="text-gray-300">Minor: Philosophy</span>
+                            <span className="font-semibold text-[var(--muted-foreground)]">Arizona State University</span><br />
+                            <span className="text-[var(--muted-foreground)]">B.S. – 2014</span><br />
+                            <span className="text-[var(--muted-foreground)]">Major: Criminology and Criminal Justice</span><br />
+                            <span className="text-[var(--muted-foreground)]">Minor: Philosophy</span>
                           </div>
                         </li>
                       </ul>
@@ -178,7 +179,7 @@ const About = () => {
                 {
                   key: "Associations",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
                   ),
                   title: "Professional Associations and Memberships",
                   content: (
@@ -196,20 +197,20 @@ const About = () => {
                   ),
                 },
               ].map((area, idx) => {
-                const [open, setOpen] = useState(idx === 0);
+                const isOpen = openIndex === idx;
                 return (
-                  <div key={area.key} className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-8 flex flex-col items-start transition-all">
-                    <div className="flex items-center w-full justify-between cursor-pointer select-none" onClick={() => setOpen((v) => !v)}>
+                    <div key={area.key} className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/30 via-[var(--primary-accent)]/10 to-transparent border  border-[var(--setBorderColorGold)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-all">
+                    <div className="flex items-center w-full justify-between cursor-pointer select-none" onClick={() => setOpenIndex(isOpen ? null : idx)}>
                       <div className="flex items-center gap-3">
                         {area.icon}
-                        <h3 className="text-xl font-bold text-yellow-300 mb-2">{area.title}</h3>
+                        <h3 className="text-xl font-bold text-[var(--primary-accent)] mb-2">{area.title}</h3>
                       </div>
-                      <button className="ml-4 text-yellow-400 text-2xl focus:outline-none" aria-label={open ? 'Collapse' : 'Expand'}>
-                        {open ? '−' : '+'}
+                      <button className="ml-4 text-[var(--headder-text-color)] text-2xl focus:outline-none" aria-label={isOpen ? 'Collapse' : 'Expand'}>
+                        {isOpen ? '−' : '+'}
                       </button>
                     </div>
                     <div
-                      className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-[1000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}
+                      className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[1000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}
                     >
                       {area.content}
                     </div>
@@ -222,8 +223,8 @@ const About = () => {
 
           {/* Personal Interests Section */}
           <section>
-            <h2 className="text-2xl font-semibold text-yellow-400 mb-4">Personal Interests</h2>
-            <p className="text-gray-300 text-lg leading-relaxed">Outside of his practice, David enjoys reading, playing piano, and spending time with family and friends.</p>
+            <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">Personal Interests</h2>
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">Outside of his practice, David enjoys reading, playing piano, and spending time with family and friends.</p>
           </section>
         </div>
       </main>
@@ -236,13 +237,13 @@ export default About;
 
 
     //  <section className="mb-12">
-    //         <h2 className="text-2xl font-semibold text-yellow-400 mb-6">Practice Areas</h2>
+    //         <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-6">Practice Areas</h2>
     //         <div className="flex flex-col gap-10">
     //           {[
     //             {
     //               key: "corporate",
     //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z"/></svg></span>
+    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z"/></svg></span>
     //               ),
     //               title: "Business & Corporate Law",
     //               content: (
@@ -263,7 +264,7 @@ export default About;
     //             {
     //               key: "estate",
     //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></span>
+    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></span>
     //               ),
     //               title: "Estate Planning",
     //               content: (
@@ -284,7 +285,7 @@ export default About;
     //             {
     //               key: "probate",
     //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
+    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
     //               ),
     //               title: "Probate & Trust Administration",
     //               content: (
@@ -306,7 +307,7 @@ export default About;
     //             {
     //               key: "immigration",
     //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-yellow-400 drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
+    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
     //               ),
     //               title: "Immigration Law",
     //               content: (
@@ -329,13 +330,13 @@ export default About;
     //           ].map((area, idx) => {
     //             const [open, setOpen] = useState(idx === 0);
     //             return (
-    //               <div key={area.key} className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-8 flex flex-col items-start transition-all">
+    //               <div key={area.key} className="relative bg-gradient-to-br from-[var(--headder-text-color)]/30 via-yellow-900/10 to-transparent border border-[var(--headder-text-color)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-all">
     //                 <div className="flex items-center w-full justify-between cursor-pointer select-none" onClick={() => setOpen((v) => !v)}>
     //                   <div className="flex items-center gap-3">
     //                     {area.icon}
     //                     <h3 className="text-xl font-bold text-yellow-300 mb-2">{area.title}</h3>
     //                   </div>
-    //                   <button className="ml-4 text-yellow-400 text-2xl focus:outline-none" aria-label={open ? 'Collapse' : 'Expand'}>
+    //                   <button className="ml-4 text-[var(--headder-text-color)] text-2xl focus:outline-none" aria-label={open ? 'Collapse' : 'Expand'}>
     //                     {open ? '−' : '+'}
     //                   </button>
     //                 </div>

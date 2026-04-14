@@ -44,22 +44,33 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --headder-text-color: #d4af37;
+  --boxgradient-color: #d4af37;
+  --innerButton-color: #000000;
+  --innerButton-color: var(--foreground);
+  --font-geist-sans: "Libre Baskerville", serif;
+  --color-text-color: #000000;
+  --setBorderColorGold: #d4af37d9;
+  --headder-navbar-color: #696969a2;
+  --navbar-font-color: #ffffff;
+
+  /* --gloabal-font:  */
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --background: #e7e7e7;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #0000002d;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0% 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -79,27 +90,40 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --primary-accent: #d4af37; /* gold accent: use var(--primary-accent) */
+  /* --headder-text-color:  #d4af37; */
+  --headder-text-color: #f5c26b;
+  --color-text-color: #000000;
+  --boxgradient-color: #d4af37;
+  --innerButton-color: var(--foreground);
+  --innerButton-color: #000000;
+  --setBorderColorGold: #d4af37d9;
+  --font-geist-sans: "Libre Baskerville", serif;
+  --headder-navbar-color: #000000;
+  --navbar-font-color: #ffffff;
+
+  /* --gloabal-font: 'Geist Sans', sans-serif; */
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --background: #0b0b0b;
+  --foreground: #f7f6f4;
+  --card: #0f1113;
+  --card-foreground: #f7f6f4;
+  --popover: #0f1113;
+  --popover-foreground: #f7f6f4;
+  --primary: rgba(255, 255, 255, 0.04);
+  --primary-foreground: #0b0b0b;
+  --secondary: #1f1f1f;
+  --secondary-foreground: #f7f6f4;
+  --muted: #1f1f1f;
+  --muted-foreground: #9a9a9a;
+  --accent: #1f1f1f;
+  --accent-foreground: #f7f6f4;
+  --destructive: #b85a5a;
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(255, 255, 255, 0.04);
+  --ring: rgba(191, 160, 84, 0.18);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -113,13 +137,20 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --primary-accent: #bfa054;
+  --headder-text-color: #bfa054;
+  --innerButton-color: #000000;
+  --font-geist-sans: "Libre Baskerville", serif;
+  --setBorderColorGold: #facc15d9;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-
+html{
+font-family:var(--font-geist-sans)
+}
   /* Body uses theme color variables; the image is rendered behind content */
   body {
     @apply bg-background text-foreground;
@@ -134,7 +165,7 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background-image: linear-gradient(rgba(11,11,11,0.45), rgba(11,11,11,0.45)), url('../utils/img/backgroundimage.png');
+    /* background-image: linear-gradient(rgba(11,11,11,0.45), rgba(11,11,11,0.45)), url('../utils/img/backgroundimage.png'); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -179,7 +210,8 @@
     display: flex;
     gap: 1.5rem;
     width: max-content;
-    animation: review-marquee var(--review-marquee-duration, 32s) linear infinite;
+    animation: review-marquee var(--review-marquee-duration, 32s) linear
+      infinite;
   }
 
   /* .review-track:hover {
@@ -206,12 +238,20 @@
   }
 
   .theme-scrollbar::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(250, 204, 21, 0.95), rgba(234, 179, 8, 0.85));
+    background: linear-gradient(
+      180deg,
+      rgba(250, 204, 21, 0.95),
+      rgba(234, 179, 8, 0.85)
+    );
     border-radius: 999px;
     border: 1px solid rgba(17, 17, 17, 0.6);
   }
 
   .theme-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, rgba(253, 224, 71, 1), rgba(250, 204, 21, 0.95));
+    background: linear-gradient(
+      180deg,
+      rgba(253, 224, 71, 1),
+      rgba(250, 204, 21, 0.95)
+    );
   }
 }

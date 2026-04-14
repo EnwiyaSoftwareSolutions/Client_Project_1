@@ -62,13 +62,13 @@ export function ContactForm() {
   }
 
   return (
-    <Card className="w-full bg-[#0000007a] border border-yellow-400 shadow-lg">
+    <Card className="w-full bg-(--card)/80 border border-(--headder-text-color) shadow-lg">
       <form onSubmit={onSubmit}>
         <CardHeader>
-          <CardTitle className="text-yellow-400">
+          <CardTitle className="text-(--headder-text-color) font-(--font-geist-sans)">
             Contact Enwiya Law firm
           </CardTitle>
-          <CardDescription className="text-gray-300 pb-3">
+          <CardDescription className="text-muted-foreground pb-3 font-[var(--font-geist-sans)]">
             Send us a message for a free consultation. We respond within 1–2
             business days.
           </CardDescription>
@@ -76,20 +76,20 @@ export function ContactForm() {
 
         <CardContent>
           {submitted ? (
-            <div className="rounded-md bg-yellow-400/20 p-4 text-yellow-200 border border-yellow-400">
-              Thank you — your message has been received. We'll be in touch
+            <div className="rounded-md bg-(--headder-text-color)/20 p-4 text-(--primary-accent) border border-(--headder-text-color)">
+              Thank you — your message has been received. We&apos;ll be in touch
               shortly.
             </div>
           ) : (
             <div className="grid gap-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <Input
+                  <Input
                   name="name"
                   placeholder="Full name"
                   value={values.name}
                   onChange={onChange}
                   required
-                  className="bg-black text-gray-200 border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
                 <Input
                   name="email"
@@ -98,7 +98,7 @@ export function ContactForm() {
                   value={values.email}
                   onChange={onChange}
                   required
-                  className="bg-black text-gray-200 border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
               </div>
 
@@ -108,14 +108,14 @@ export function ContactForm() {
                   placeholder="Phone (optional)"
                   value={values.phone}
                   onChange={onChange}
-                  className="bg-black text-gray-200 border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
                 <Input
                   name="subject"
                   placeholder="Subject"
                   value={values.subject}
                   onChange={onChange}
-                  className="bg-black text-gray-200 border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
               </div>
 
@@ -126,9 +126,9 @@ export function ContactForm() {
                 onChange={onChange}
                 required
                 className={cn(
-                  "min-h-[120px] w-full resize-none rounded-md bg-black px-3 py-2 text-sm text-gray-200",
-                  "border border-yellow-400 shadow-xs",
-                  "focus:border-yellow-500 focus:ring-yellow-500 focus:ring-[3px]"
+                  "min-h-30 w-full resize-none rounded-md bg-card px-3 py-2 text-sm text-muted-foreground",
+                  "border border-(--headder-text-color) shadow-xs",
+                  "focus:border-(--primary-accent) focus:ring-(--primary-accent) focus:ring-[3px]"
                 )}
               />
             </div>
@@ -139,7 +139,7 @@ export function ContactForm() {
           <Button
             type="submit"
             disabled={submitting || submitted}
-            className="ml-auto bg-yellow-400 text-black hover:bg-yellow-500 focus:ring-yellow-500"
+            className="ml-auto bg-(--headder-text-color) text-primary hover:bg-(--primary-accent) focus:ring-(--primary-accent)"
           >
             {submitting ? "Sending..." : submitted ? "Sent" : "Send Message"}
           </Button>

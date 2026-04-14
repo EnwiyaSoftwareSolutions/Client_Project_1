@@ -24,13 +24,13 @@ const AdminPage: React.FC = () => {
                 <CardContent>
                     <form className="space-y-5">
                         <div className="space-y-2 text-sm font-medium">
-                            <label htmlFor="admin-email">Email</label>
+                            <label htmlFor="admin-username">Username</label>
                             <Input
-                                id="admin-email"
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                placeholder="admin@enwiya.com"
+                                id="admin-username"
+                                name="username"
+                                type="text"
+                                autoComplete="username"
+                                placeholder="admin"
                                 required
                             />
                         </div>
@@ -50,12 +50,12 @@ const AdminPage: React.FC = () => {
                                 <input type="checkbox" name="remember" className="h-4 w-4" />
                                 Remember me
                             </label>
-                            <button
+                            {/* <button
                                 type="button"
                                 className="text-primary hover:underline"
                             >
                                 Forgot password?
-                            </button>
+                            </button> */}
                         </div>
                         <Button type="submit" className="w-full">
                             Sign In

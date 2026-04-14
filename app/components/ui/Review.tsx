@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import people from "../../data/review";
 import { ChevronLeftIcon, ChevronRightIcon, QuoteIcon } from "lucide-react";
+import { Button } from "./button";
 
 export default function Review() {
 	const [index, setIndex] = useState(0);
@@ -66,17 +67,17 @@ export default function Review() {
 			<h4 className="author">{name}</h4>
 			<p className="job">{job}</p>
 			<p className="info">{text}</p>
-			<div className="button-container">
-				<button className="prev-btn" onClick={prevPerson} aria-label="previous review">
+			<div className="button-container flex gap-2">
+				<Button variant="ghost" size="icon" onClick={prevPerson} aria-label="previous review">
 					<ChevronLeftIcon />
-				</button>
-				<button className="next-btn" onClick={nextPerson} aria-label="next review">
+				</Button>
+				<Button variant="ghost" size="icon" onClick={nextPerson} aria-label="next review">
 					<ChevronRightIcon />
-				</button>
+				</Button>
 			</div>
-			<button className="random-btn" onClick={getRandomPerson}>
+			<Button className="mt-4" onClick={getRandomPerson}>
 				Get Random Review
-			</button>
+			</Button>
 		</article>
 	);
 }

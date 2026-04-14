@@ -1,30 +1,42 @@
-import React from "react";
+import { FaBalanceScale, FaRegFileAlt, FaClipboardCheck, FaDashcube, FaGlobeAmericas } from "react-icons/fa";
 
 const Probate = () => {
     return (
-        <main className="min-h-screen bg-black text-white py-12 px-4">
+        <main className="min-h-screen text-[var(--color-text-color)] via-yellow-900/5 to-black py-12 px-4">
             <div className="max-w-3xl mx-auto">
-                <div className="relative bg-gradient-to-br from-yellow-400/30 via-yellow-900/10 to-transparent border border-yellow-400 rounded-xl shadow-xl p-8">
-                    <h1 className="text-3xl md:text-4xl font-bold text-yellow-400 mb-6">Probate & Trust Administration</h1>
-                    <p className="text-gray-300 mb-4">
-                        The loss of a loved one is never easy, and the legal responsibilities that follow can feel overwhelming. Probate and trust administration often involve complex procedures, strict deadlines, and emotionally sensitive decisions—all at a time when families are focused on grieving and healing. Without experienced legal guidance, even straightforward estates can become unnecessarily time-consuming or contentious.
+                <div className="relative bg-gradient-to-br from-[var(--headder-text-color)]/40 via-yellow-900/10 to-transparent border border-[var(--headder-text-color)] rounded-2xl shadow-2xl p-10 overflow-hidden">
+                    <div className="flex items-center gap-4 mb-6">
+                        <span className="text-5xl md:text-6xl text-yellow-300 drop-shadow"><FaBalanceScale className="text-4xl text-[var(--headder-text-color)] drop-shadow" /></span>
+                        <h1 className="text-3xl md:text-4xl font-extrabold text-[var(--headder-text-color)] tracking-tight drop-shadow">Probate & Trust Administration</h1>
+                    </div>
+
+                    <p className="text-[var(--color-text-color)] text-lg mt-6 mb-4 leading-relaxed">
+                        The loss of a loved one is never easy, and the legal responsibilities that follow can feel overwhelming. Probate and trust administration involve time-sensitive procedures and important fiduciary duties that require careful attention and experienced guidance.
                     </p>
-                    <p className="text-gray-300 mb-4">
-                        At Enwiya Law Firm, we guide personal representatives, trustees, and beneficiaries through the probate and trust administration process with care, clarity, and efficiency. Our approach emphasizes clear communication, practical problem-solving, and diligent administration, helping clients understand their responsibilities while minimizing stress and uncertainty. We work to ensure that estates and trusts are administered properly, efficiently, and in accordance with the law and the decedent’s intentions.
+
+                    <p className="text-[var(--color-text-color)] text-lg mb-6 leading-relaxed">
+                        At Enwiya Law Firm, we assist personal representatives, trustees, and beneficiaries with compassionate, thorough representation—helping to settle estates, manage assets, resolve claims, and ensure distributions are handled according to the law and the decedent’s wishes.
                     </p>
-                    <h2 className="text-2xl font-semibold text-yellow-300 mt-8 mb-4">Our Probate & Trust Services</h2>
-                    <ul className="list-disc list-inside text-gray-200 mb-6 space-y-1">
-                        <li>Informal Probate Proceedings</li>
-                        <li>Trust Administration and Trustee Guidance</li>
-                        <li>Estate and Trust Asset Management Support</li>
-                        <li>Creditor Claims and Notice Requirements</li>
-                        <li>Distribution of Assets to Beneficiaries</li>
-                        <li>Resolution of Probate and Trust-Related Issues</li>
-                    </ul>
-                    <p className="text-gray-400 italic">
-                        Whether you are serving as a personal representative or trustee, or you are a beneficiary seeking guidance, Enwiya Law Firm provides steady, knowledgeable support throughout the administration process. Our goal is to ease the legal burden during a difficult time while protecting your interests and honoring your loved one’s legacy.
+
+                    <div className="my-8">
+                        <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">Our Probate & Trust Services</h2>
+                        <ul className="list-none space-y-3">
+                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Informal and Formal Probate Proceedings</li>
+                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Trust Administration & Trustee Guidance</li>
+                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Estate Asset Identification & Management</li>
+                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Creditor Claims, Notices & Litigation Support</li>
+                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Distribution to Beneficiaries & Final Accounting</li>
+                        </ul>
+                    </div>
+
+                    <hr className="border-[var(--headder-text-color)]/30 my-6" />
+
+                    <p className="text-[var(--color-text-color)] italic text-lg">
+                        Whether you are acting as a fiduciary or seeking to protect your rights as a beneficiary, Enwiya Law Firm provides steady, knowledgeable support to navigate probate and trust administration with care and competence.
                     </p>
-                    <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none">🏛️</span>
+
+                    <span className="absolute right-6 top-6 opacity-10 text-8xl pointer-events-none select-none"><FaBalanceScale /></span>
+                    <span className="absolute left-0 bottom-0 opacity-5 text-[10rem] pointer-events-none select-none"><FaBalanceScale /></span>
                 </div>
             </div>
         </main>
