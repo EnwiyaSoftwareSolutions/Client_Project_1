@@ -44,13 +44,13 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  --headder-text-color: #d4af37;
-  --boxgradient-color: #d4af37;
+  --headder-text-color: #8a6719;
+  --boxgradient-color: #b88b29;
   --innerButton-color: #000000;
   --innerButton-color: var(--foreground);
   --font-geist-sans: "Libre Baskerville", serif;
   --color-text-color: #000000;
-  --setBorderColorGold: #d4af37d9;
+  --setBorderColorGold: #a97c20d9;
   --headder-navbar-color: #696969a2;
   --navbar-font-color: #ffffff;
 
@@ -59,8 +59,8 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #e7e7e7;
-  --foreground: #000000;
+  --background: #f3f0e8;
+  --foreground: #171411;
   --card: #ffffff;
   --card-foreground: #000000;
   --popover: #ffffff;
@@ -70,11 +70,11 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0% 0 0);
+  --muted-foreground: #3f392f;
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
+  --border: #d6d0c4;
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -90,16 +90,16 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --primary-accent: #d4af37; /* gold accent: use var(--primary-accent) */
+  --primary-accent: #a67a1f; /* gold accent: use var(--primary-accent) */
   /* --headder-text-color:  #d4af37; */
-  --headder-text-color: #f5c26b;
+  --headder-text-color: #7b5a16;
   --color-text-color: #000000;
-  --boxgradient-color: #d4af37;
+  --boxgradient-color: #b88b29;
   --innerButton-color: var(--foreground);
   --innerButton-color: #000000;
-  --setBorderColorGold: #d4af37d9;
+  --setBorderColorGold: #a97c20d9;
   --font-geist-sans: "Libre Baskerville", serif;
-  --headder-navbar-color: #000000;
+  --headder-navbar-color: #111111;
   --navbar-font-color: #ffffff;
 
   /* --gloabal-font: 'Geist Sans', sans-serif; */
@@ -154,6 +154,11 @@ font-family:var(--font-geist-sans)
   /* Body uses theme color variables; the image is rendered behind content */
   body {
     @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.14), transparent 35%),
+      radial-gradient(circle at 85% 0%, rgba(18, 18, 18, 0.09), transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(243, 240, 232, 0.95));
+    background-attachment: fixed;
   }
 
   /* Fixed, blurred background image behind all content. The image is
@@ -172,8 +177,24 @@ font-family:var(--font-geist-sans)
     -webkit-background-size: cover;
     -moz-background-size: cover;
     /* filter: blur(5px);  */
+    opacity: 0.35;
     transform: scale(1.03); /* compensate for blur edges */
     will-change: transform;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: linear-gradient(
+      to right,
+      rgba(23, 20, 17, 0.02) 1px,
+      transparent 1px
+    );
+    background-size: 36px 36px;
+    opacity: 0.35;
   }
 
   /* html body {
@@ -187,6 +208,10 @@ font-family:var(--font-geist-sans)
     body::before {
       position: absolute;
       filter: blur(6px);
+    }
+
+    body::after {
+      position: absolute;
     }
   }
 }

@@ -73,7 +73,7 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
           isScrolled || isMenuOpen
-            ? "bg-[#0b0b0b]/95 backdrop-blur-md shadow-lg"
+            ? "bg-[#0b0b0b]/95 backdrop-blur-md shadow-lg border-b border-white/10"
             : "bg-[var(--headder-navbar-color)] backdrop-blur-sm"
         )}
       >
@@ -97,7 +97,6 @@ export function Navbar() {
                 <NavigationMenuList className="flex items-center gap-1">
                   {navItems.map((item) => {
                     const isActive = pathname === item.href;
-                    console.log(isActive, "testing active state for", item.href);
                     return (
                       <NavigationMenuItem key={item.name}>
                         <Link
@@ -106,13 +105,13 @@ export function Navbar() {
                             "relative px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
                             "rounded-md hover:bg-white/5",
                             isActive
-                              ? "text-[var(--headder-text-color)]"
+                              ? "text-[var(--headder-text-color)] bg-white/5"
                               : "text-[var(--navbar-font-color)] hover:text-[var(--headder-text-color)]"
                           )}
                         >
                           {item.name}
                           {isActive && (
-                            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-4 bg-[var(--primary-accent)] rounded-full" />
+                            <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-[var(--primary-accent)]" />
                           )}
                         </Link>
                       </NavigationMenuItem>
