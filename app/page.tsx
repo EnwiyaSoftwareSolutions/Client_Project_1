@@ -3,6 +3,7 @@ import { useEffect, type CSSProperties } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "./components/ui/button"
+import { FaGavel, FaRegFileAlt, FaBalanceScale, FaGlobeAmericas } from "react-icons/fa"
 // import Law from "./components/pArea/lawArea";
 import {useReviews, type ReviewsStore} from "store/useReviews"
 
@@ -43,10 +44,10 @@ export default function Home() {
             Expert legal services tailored to your needs. Protecting your rights with integrity and professionalism.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild>
+            <Button asChild className={"bg-[var(--headder-text-color)]"}>
               <Link href="/contact" className="text-[var(--innerButton-color)]">Schedule Consultation</Link>
             </Button>
-            <Button  asChild>
+            <Button  asChild className={"bg-[var(--headder-text-color)]"}>
               <Link href="/about" className="text-[var(--innerButton-color)]">Learn More</Link>
             </Button>
           </div>
@@ -93,53 +94,58 @@ export default function Home() {
             Our Services
           </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/20 via-[var(--primary-accent)]/8 to-transparent border border-[var(--setBorderColorGold)] rounded-xl shadow-md p-6 flex flex-col items-start hover:shadow-2xl hover:scale-105 transform transition-all">
-                <div className="mb-4 flex items-center gap-4">
-                  <svg className="w-10 h-10 text-[var(--primary-accent)]" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M12 2L3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z" fill="currentColor" opacity="0.08" />
-                    <path d="M7 10h10M7 14h6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <h3 className="text-xl font-bold text-[var(--primary-accent)]">Corporate Law</h3>
+              <Link href="/practice-area/corporate" className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-accent)] rounded-xl">
+                <div className="relative h-full bg-gradient-to-br from-[var(--headder-text-color)]/30 via-[var(--primary-accent)]/10 to-transparent border border-[var(--headder-text-color)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-transform duration-200 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-[var(--primary-accent)]">
+                <div className="mb-4">
+                  <FaGavel className="text-4xl text-[var(--headder-text-color)] drop-shadow" />
                 </div>
-                <p className="text-[var(--muted-foreground)]">
+                <h3 className="text-2xl font-bold text-[var(--text-headers-black)] mb-2">Corporate Law</h3>
+                <p className="text-[var(--muted-foreground)] mb-4 leading-relaxed">
                   Strategic counsel for entrepreneurs and companies, including entity formation, contracts, acquisitions, and succession planning.
                 </p>
-            </div>
-              <div className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/20 via-[var(--primary-accent)]/8 to-transparent border border-[var(--setBorderColorGold)] rounded-xl shadow-md p-6 flex flex-col items-start hover:shadow-2xl hover:scale-105 transform transition-all">
-                <div className="mb-4 flex items-center gap-4">
-                  <svg className="w-10 h-10 text-[var(--primary-accent)]" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M6 2h9v4H6z" fill="currentColor" opacity="0.08" />
-                    <path d="M8 7h8M8 11h8M8 15h6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <h3 className="text-xl font-bold text-[var(--primary-accent)]">Estate Planning</h3>
+                <span className="mt-auto text-[var(--headder-text-color)] font-semibold group-hover:underline group-hover:text-[var(--primary-accent)] transition-colors">Learn more &rarr;</span>
+                <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none"><FaGavel className="text-[var(--headder-text-color)]" /></span>
                 </div>
-                <p className="text-[var(--muted-foreground)]">
+              </Link>
+              <Link href="/practice-area/estate" className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-accent)] rounded-xl">
+                <div className="relative h-full bg-gradient-to-br from-[var(--headder-text-color)]/30 via-[var(--primary-accent)]/10 to-transparent border border-[var(--headder-text-color)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-transform duration-200 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-[var(--primary-accent)]">
+                <div className="mb-4">
+                  <FaRegFileAlt className="text-4xl text-[var(--headder-text-color)] drop-shadow" />
+                </div>
+                <h3 className="text-2xl font-bold text-[var(--text-headers-black)] mb-2">Estate Planning</h3>
+                <p className="text-[var(--muted-foreground)] mb-4 leading-relaxed">
                   Personalized estate plans, wills, trusts, and asset protection to secure your legacy and provide peace of mind for your family.
                 </p>
-            </div>
-              <div className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/20 via-[var(--primary-accent)]/8 to-transparent border border-[var(--setBorderColorGold)] rounded-xl shadow-md p-6 flex flex-col items-start hover:shadow-2xl hover:scale-105 transform transition-all">
-                <div className="mb-4 flex items-center gap-4">
-                  <svg className="w-10 h-10 text-[var(--primary-accent)]" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M3 11h18M5 11l4-6 4 6 4-6 4 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.12" />
-                  </svg>
-                  <h3 className="text-xl font-bold text-[var(--primary-accent)]">Probate</h3>
+                <span className="mt-auto text-[var(--headder-text-color)] font-semibold group-hover:underline group-hover:text-[var(--primary-accent)] transition-colors">Learn more &rarr;</span>
+                <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none"><FaRegFileAlt className="text-[var(--headder-text-color)]" /></span>
                 </div>
-                <p className="text-[var(--muted-foreground)]">
+              </Link>
+              <Link href="/practice-area/probate" className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-accent)] rounded-xl">
+                <div className="relative h-full bg-gradient-to-br from-[var(--headder-text-color)]/30 via-[var(--primary-accent)]/10 to-transparent border border-[var(--headder-text-color)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-transform duration-200 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-[var(--primary-accent)]">
+                <div className="mb-4">
+                  <FaBalanceScale className="text-4xl text-[var(--headder-text-color)] drop-shadow" />
+                </div>
+                <h3 className="text-2xl font-bold text-[var(--text-headers-black)] mb-2">Probate</h3>
+                <p className="text-[var(--muted-foreground)] mb-4 leading-relaxed">
                   Guidance through probate and trust administration, asset management, and resolution of estate matters with care and clarity.
                 </p>
-            </div>
-              <div className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/20 via-[var(--primary-accent)]/8 to-transparent border border-[var(--setBorderColorGold)] rounded-xl shadow-md p-6 flex flex-col items-start hover:shadow-2xl hover:scale-105 transform transition-all">
-                <div className="mb-4 flex items-center gap-4">
-                  <svg className="w-10 h-10 text-[var(--primary-accent)]" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.06" />
-                    <path d="M2 12h20M12 2v20" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
-                  </svg>
-                  <h3 className="text-xl font-bold text-[var(--primary-accent)]">Immigration</h3>
+                <span className="mt-auto text-[var(--headder-text-color)] font-semibold group-hover:underline group-hover:text-[var(--primary-accent)] transition-colors">Learn more &rarr;</span>
+                <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none"><FaBalanceScale className="text-[var(--headder-text-color)]" /></span>
                 </div>
-                <p className="text-[var(--muted-foreground)]">
+              </Link>
+              <Link href="/practice-area/immigration" className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-accent)] rounded-xl">
+                <div className="relative h-full bg-gradient-to-br from-[var(--headder-text-color)]/30 via-[var(--primary-accent)]/10 to-transparent border border-[var(--headder-text-color)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-transform duration-200 group-hover:scale-105 group-hover:shadow-2xl group-hover:border-[var(--primary-accent)]">
+                <div className="mb-4">
+                  <FaGlobeAmericas className="text-4xl text-[var(--headder-text-color)] drop-shadow" />
+                </div>
+                <h3 className="text-2xl font-bold text-[var(--text-headers-black)] mb-2">Immigration</h3>
+                <p className="text-[var(--muted-foreground)] mb-4 leading-relaxed">
                   Comprehensive immigration services, including family petitions, status adjustments, citizenship, and legal advising.
                 </p>
-            </div>
+                <span className="mt-auto text-[var(--headder-text-color)] font-semibold group-hover:underline group-hover:text-[var(--primary-accent)] transition-colors">Learn more &rarr;</span>
+                <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none"><FaGlobeAmericas className="text-[var(--headder-text-color)]" /></span>
+                </div>
+              </Link>
           </div>
         </div>
       </section>
@@ -201,8 +207,8 @@ export default function Home() {
           <p className="text-[var(--muted-foreground)] text-lg mb-8">
             Contact Enwiya Law Firm today for a free consultation and let us help you with your legal needs.
             </p>
-            <Button asChild>
-              <Link href="/contact">Contact Us</Link>
+            <Button asChild className="bg-[var(--headder-text-color)]">
+              <Link href="/contact" >Contact Us</Link>
             </Button>
         </div>
       </section>

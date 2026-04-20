@@ -47,8 +47,8 @@ export default function Reviews() {
                 {isLoading && reviews.length === 0 && (
                   <p className="text-sm text-[var(--muted-foreground)]">Loading reviews...</p>
                 )}
-                {reviews.slice(0, 6).map((r) => (
-                  <article key={r.id} className="flex items-start gap-4 rounded-lg border border-[var(--setBorderColorGold)] bg-[var(--card)]/10 p-4 shadow group hover:scale-[1.02] transition-transform">
+                {reviews.slice(0, 6).map((r, idx) => (
+                  <article key={r.$id ?? r.id ?? idx} className="flex items-start gap-4 rounded-lg border border-[var(--setBorderColorGold)] bg-[var(--card)]/10 p-4 shadow group hover:scale-[1.02] transition-transform">
                     {/* <img
                       src={r.image}
                       alt={r.name}

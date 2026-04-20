@@ -125,7 +125,7 @@ export function Navbar() {
                 asChild
                 className={cn(
                   "ml-4 transition-all duration-200",
-                  "bg-[var(--primary-accent)] text-black font-semibold",
+                  "bg-[var(--headder-text-color)] text-black font-semibold",
                   "hover:bg-[var(--primary-accent)]/90 hover:scale-105",
                   "shadow-lg hover:shadow-xl"
                 )}

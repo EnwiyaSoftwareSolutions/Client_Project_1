@@ -1,49 +1,64 @@
 "use client";
 import React, { useState } from "react";
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardFooter,
-//   CardHeader,
-//   CardTitle,
-// } from "../components/ui/card";
-// import { Button } from "../components/ui/button";
 
 const About = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-//   const [propSelect, setPropSelect] = useState<string>("");
-
-//   const onPropClick = (prop: string) => {
-//     setPropSelect(prop);
-//   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen text-[var(--foreground)]">
-      <main className="flex-1 min-h-screen">
-        <div className="container mx-auto px-6 py-12 max-w-4xl">
-          {/* Header Section */}
-          <div className="flex flex-col md:flex-row items-center justify-center mb-12">
-            <img
-              src="/images/profile.jpg" // Replace with the actual path to the profile image
-              alt="David Andrew Enwiya"
-              className="w-24 h-24 rounded-full mr-6 object-cover mb-4 md:mb-0"
-            />
-            <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--headder-text-color)] mb-4">
-                About David Andrew Enwiya
-              </h1>
-              <p className="text-[var(--muted-foreground)] text-lg">
-                Founding and Managing Attorney of Enwiya Law Firm PLLC
-              </p>
+    <div className="min-h-screen text-[var(--foreground)]">
+
+      {/* ── Hero Banner ──────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--foreground)] via-[#1c1610] to-[#0d0b07] py-28 px-6">
+        {/* decorative gold orb */}
+        <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[var(--primary-accent)]/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[var(--boxgradient-color)]/10 blur-2xl" />
+
+        <div className="relative mx-auto max-w-4xl flex flex-col md:flex-row items-center gap-10">
+          {/* Avatar */}
+          <div className="flex-shrink-0">
+            <div className="relative">
+              <div className="w-36 h-36 rounded-full ring-4 ring-[var(--setBorderColorGold)] ring-offset-4 ring-offset-[#1c1610] overflow-hidden shadow-2xl">
+                <img
+                  src="/images/profile.jpg"
+                  alt="David Andrew Enwiya"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="absolute -bottom-2 -right-2 bg-[var(--primary-accent)] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg tracking-wide">
+                Founding Attorney
+              </span>
             </div>
           </div>
 
+          {/* Title block */}
+          <div>
+            <p className="text-[var(--boxgradient-color)] text-sm font-semibold tracking-[0.2em] uppercase mb-2">
+              Enwiya Law Firm PLLC
+            </p>
+            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
+              David Andrew Enwiya
+            </h1>
+            <p className="text-white/60 text-lg max-w-xl leading-relaxed">
+              Founding and Managing Attorney · Corporate Law · Estate Planning ·
+              Probate · Immigration
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Gold divider ──────────────────────────────────────────── */}
+      <div className="h-1 bg-gradient-to-r from-transparent via-[var(--setBorderColorGold)] to-transparent" />
+
+      <main className="flex-1">
+        <div className="container mx-auto px-6 py-16 max-w-4xl">
           {/* Biography Section */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-[var(--text-headers-black)] mb-4">
-              Biography
-            </h2>
+          <section className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
+                Biography
+              </h2>
+            </div>
             <p className="text-[var(--muted-foreground)] text-lg leading-relaxed mb-6">
               David Andrew Enwiya is the founding and managing attorney of Enwiya
               Law Firm PLLC, where he advises and represents clients in corporate
@@ -65,11 +80,14 @@ const About = () => {
             </p>
           </section>
 
-          {/* Education Section */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-[var(--text-headers-black)] mb-4">
-              Education
-            </h2>
+          {/* Education Narrative Section */}
+          <section className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
+                Education
+              </h2>
+            </div>
             <p className="text-[var(--muted-foreground)] text-lg leading-relaxed mb-4">
               Born in Chicago, Illinois, David relocated with his family after his
               childhood to Phoenix, Arizona. He earned his Bachelor of Science in
@@ -90,10 +108,14 @@ const About = () => {
 
 
 
-          {/* Practice Areas Section */}
-
-          <section className="mb-12">
-            {/* <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-6">Areas of Practice</h2> */}
+          {/* Credentials Accordion */}
+          <section className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
+                Credentials &amp; Professional Profile
+              </h2>
+            </div>
             <div className="flex flex-col gap-10">
               {[
                 {
@@ -104,8 +126,6 @@ const About = () => {
                   title: "Areas of Practice",
                   content: (
                     <>
-                      {/* <p className="text-gray-300 mb-2">Building and operating a successful business requires more than a strong idea—it requires a solid legal foundation. From formation through growth, transition, or exit, business owners face complex legal decisions that can significantly affect their operations, personal liability, and long-term goals. Clear legal guidance at each stage is essential to protecting both the business and the people behind it.</p>
-                      <p className="text-gray-300 mb-2">Enwiya Law Firm works closely with entrepreneurs, professionals, and established companies to provide practical, strategic counsel tailored to their unique needs. We take the time to understand how each business operates, the risks it faces, and the objectives it seeks to achieve. Our approach emphasizes thoughtful planning, careful drafting, and proactive problem-solving, allowing clients to make informed decisions with confidence.</p> */}
                       <ul className="list-disc list-inside text-[var(--muted-foreground)] mb-2">
                         <li>Business Corporate Law</li>
                         <li>Contract Law</li>
@@ -113,7 +133,6 @@ const About = () => {
                         <li>Estate Planning</li>
                         <li>Probate</li>
                       </ul>
-                      {/* <p className="text-gray-400 italic">Whether you are launching a new venture, formalizing relationships through well-crafted agreements, acquiring or selling a business, or navigating a transition or dissolution, Enwiya Law Firm provides clear, reliable legal guidance focused on protecting your interests and supporting your long-term success.</p> */}
                     </>
                   ),
                 },
@@ -125,15 +144,13 @@ const About = () => {
                   title: "Bar Admissions",
                   content: (
                     <>
-                      {/* <p className="text-gray-300 mb-2">Estate planning is about more than distributing assets—it is about protecting loved ones, preserving what you have built, and ensuring your wishes are honored when it matters most. Without a clear and legally sound plan in place, families are often left to navigate uncertainty, unnecessary expense, and avoidable conflict during already difficult times.</p>
-                      <p className="text-gray-300 mb-2">At Enwiya Law Firm, we help individuals and families create thoughtful, customized estate plans that reflect their values, goals, and unique circumstances. We believe effective estate planning begins with listening. By understanding each client’s family dynamics, financial situation, and long-term objectives, we are able to craft plans that provide clarity, continuity, and peace of mind.</p> */}
                       <ul className="list-disc list-inside text-gray-200 mb-2">
                         <li className="text-[var(--muted-foreground)]">Arizona 2019</li>
                        <li className="text-[var(--muted-foreground)]">Minnesota, 2023</li>
 <li className="text-[var(--muted-foreground)]">North Dakota, 2021</li>
 <li className="text-[var(--muted-foreground)]">State Bar of New Mexico (Inactive)</li>
                       </ul>
-                      {/* <p className="text-gray-400 italic">Whether you are planning for the future, preparing for life’s uncertainties, or seeking to protect your legacy for the next generation, Enwiya Law Firm provides careful guidance and strategic counsel designed to safeguard your interests and support your family with confidence and dignity.</p> */}
+                     
                     </>
                   ),
                 },
@@ -145,11 +162,9 @@ const About = () => {
                   title: "Education",
                   content: (
                     <>
-                      {/* <p className="text-gray-300 mb-2">The loss of a loved one is never easy, and the legal responsibilities that follow can feel overwhelming. Probate and trust administration often involve complex procedures, strict deadlines, and emotionally sensitive decisions—all at a time when families are focused on grieving and healing. Without experienced legal guidance, even straightforward estates can become unnecessarily time-consuming or contentious.</p> */}
-                      {/* <p className="text-gray-300 mb-2">At Enwiya Law Firm, we guide personal representatives, trustees, and beneficiaries through the probate and trust administration process with care, clarity, and efficiency. Our approach emphasizes clear communication, practical problem-solving, and diligent administration, helping clients understand their responsibilities while minimizing stress and uncertainty. We work to ensure that estates and trusts are administered properly, efficiently, and in accordance with the law and the decedent’s intentions.</p> */}
                       <ul className="space-y-4 mb-2">
                         <li className="flex items-start gap-3">
-                          {/* <span className="text-[var(--headder-text-color)] text-xl">🎓</span> */}
+                     
                           <div>
                             <span className="font-semibold text-[var(--muted-foreground)]">Arizona Summit Law School</span><br />
                             <span className="text-[var(--muted-foreground)]">Phoenix, Arizona</span><br />
@@ -163,7 +178,7 @@ const About = () => {
                           </div>
                         </li>
                         <li className="flex items-start gap-3">
-                          {/* <span className="text-[var(--headder-text-color)] text-xl">🎓</span> */}
+                          
                           <div>
                             <span className="font-semibold text-[var(--muted-foreground)]">Arizona State University</span><br />
                             <span className="text-[var(--muted-foreground)]">B.S. – 2014</span><br />
@@ -172,7 +187,7 @@ const About = () => {
                           </div>
                         </li>
                       </ul>
-                      {/* <p className="text-gray-400 italic">Whether you are serving as a personal representative or trustee, or you are a beneficiary seeking guidance, Enwiya Law Firm provides steady, knowledgeable support throughout the administration process. Our goal is to ease the legal burden during a difficult time while protecting your interests and honoring your loved one’s legacy.</p> */}
+               
                     </>
                   ),
                 },
@@ -184,37 +199,53 @@ const About = () => {
                   title: "Professional Associations and Memberships",
                   content: (
                     <>
-                      {/* <p className="text-gray-300 mb-2">For generations, the United States has represented opportunity, stability, and the promise of a better future. Individuals and families from around the world continue to answer that call—seeking to build lives, reunite with loved ones, and contribute to the communities they call home. Yet the immigration process itself can be complex, demanding, and,  overwhelming. Strict requirements, evolving regulations, and high stakes often leave individuals and families uncertain about their next steps.</p> */}
-                      {/* <p className="text-gray-300 mb-2">Immigration law is a dynamic and detail-intensive area of practice that requires careful legal analysis, strategic planning, and clear guidance. At Enwiya Law Firm, we are committed to helping clients navigate this process with confidence. We take the time to understand each client’s goals and circumstances, explain available options in plain terms, and advocate diligently to protect their rights at every stage of the process.</p> */}
+                     
                       <ul className="list-disc list-inside text-gray-200 mb-2">
-                       <li>State Bar of Arizona, Member</li>
-                       <li>State Bar of Minnesota, Member</li>
-                       <li>State Bar of North Dakota, Member</li>
-                       <li>State Bar of New Mexico, Member</li>
+                       <li className="text-[var(--muted-foreground)]">State Bar of Arizona, Member</li>
+                       <li className="text-[var(--muted-foreground)]">State Bar of Minnesota, Member</li>
+                       <li className="text-[var(--muted-foreground)]">State Bar of North Dakota, Member</li>
+                       <li className="text-[var(--muted-foreground)]">State Bar of New Mexico, Member</li>
                       </ul>
-                      {/* <p className="text-gray-400 italic">Enwiya Law Firm serves clients from diverse backgrounds and communities, offering personalized immigration counsel rooted in respect, diligence, and professionalism. Whether you are beginning your immigration journey or navigating a critical stage in the process, we are dedicated to providing steady guidance and strong advocacy as you pursue your future in the United States.</p> */}
+                 
                     </>
                   ),
                 },
               ].map((area, idx) => {
                 const isOpen = openIndex === idx;
                 return (
-                    <div key={area.key} className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/30 via-[var(--primary-accent)]/10 to-transparent border  border-[var(--setBorderColorGold)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-all">
-                    <div className="flex items-center w-full justify-between cursor-pointer select-none" onClick={() => setOpenIndex(isOpen ? null : idx)}>
-                      <div className="flex items-center gap-3">
-                        {area.icon}
-                        <h3 className="text-xl font-bold text-[var(--text-headder-black)] mb-2">{area.title}</h3>
-                      </div>
-                      <button className="ml-4 text-[var(--headder-text-color)] text-2xl focus:outline-none" aria-label={isOpen ? 'Collapse' : 'Expand'}>
-                        {isOpen ? '−' : '+'}
-                      </button>
-                    </div>
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[1000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}
+                  <div
+                    key={area.key}
+                    className="relative bg-gradient-to-br from-[var(--boxgradient-color)]/20 via-[var(--primary-accent)]/5 to-transparent border border-[var(--setBorderColorGold)] rounded-2xl shadow-lg overflow-hidden transition-all"
+                  >
+                    {/* accordion header */}
+                    <button
+                      className="flex items-center justify-between w-full px-8 py-6 text-left cursor-pointer focus:outline-none group"
+                      onClick={() => setOpenIndex(isOpen ? null : idx)}
+                      aria-expanded={isOpen}
                     >
-                      {area.content}
+                      <div className="flex items-center gap-4">
+                        <span className="text-[var(--headder-text-color)]">{area.icon}</span>
+                        <span className="text-lg font-bold text-[var(--headder-text-color)] group-hover:text-[var(--boxgradient-color)] transition-colors">
+                          {area.title}
+                        </span>
+                      </div>
+                      <span
+                        className={`text-[var(--headder-text-color)] text-2xl font-light transition-transform duration-300 ${isOpen ? "rotate-45" : "rotate-0"}`}
+                      >
+                        +
+                      </span>
+                    </button>
+
+                    {/* accordion body */}
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}
+                    >
+                      <div className="px-8 pb-8 pt-0 text-[var(--muted-foreground)] text-base leading-relaxed">
+                        <div className="border-t border-[var(--setBorderColorGold)]/30 pt-5">
+                          {area.content}
+                        </div>
+                      </div>
                     </div>
-                    <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none">{area.icon}</span>
                   </div>
                 );
               })}
@@ -222,132 +253,37 @@ const About = () => {
           </section>
 
           {/* Personal Interests Section */}
-          <section>
-            <h2 className="text-2xl font-semibold text-[var(--text-headers-black)] mb-4">Personal Interests</h2>
-            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">Outside of his practice, David enjoys reading, playing piano, and spending time with family and friends.</p>
+          <section className="mt-4">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
+                Personal Interests
+              </h2>
+            </div>
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">
+              Outside of his practice, David enjoys reading, playing piano, and spending time with family and friends.
+            </p>
           </section>
+
         </div>
+
+        {/* ── CTA Strip ────────────────────────────────────────────── */}
+        <div className="bg-gradient-to-r from-[var(--foreground)] via-[#1c1610] to-[var(--foreground)] border-t border-[var(--setBorderColorGold)]/40 py-14 px-6 text-center">
+          <p className="text-white/60 text-sm tracking-widest uppercase mb-3">Ready to get started?</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Schedule a Consultation
+          </h2>
+          <a
+            href="/contact"
+            className="inline-block bg-[var(--primary-accent)] hover:bg-[var(--boxgradient-color)] text-white font-semibold px-10 py-4 rounded-xl shadow-lg transition-colors duration-200 text-lg"
+          >
+            Contact Us Today
+          </a>
+        </div>
+
       </main>
     </div>
   );
 };
 
 export default About;
-
-
-
-    //  <section className="mb-12">
-    //         <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-6">Practice Areas</h2>
-    //         <div className="flex flex-col gap-10">
-    //           {[
-    //             {
-    //               key: "corporate",
-    //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z"/></svg></span>
-    //               ),
-    //               title: "Business & Corporate Law",
-    //               content: (
-    //                 <>
-    //                   <p className="text-gray-300 mb-2">Building and operating a successful business requires more than a strong idea—it requires a solid legal foundation. From formation through growth, transition, or exit, business owners face complex legal decisions that can significantly affect their operations, personal liability, and long-term goals. Clear legal guidance at each stage is essential to protecting both the business and the people behind it.</p>
-    //                   <p className="text-gray-300 mb-2">Enwiya Law Firm works closely with entrepreneurs, professionals, and established companies to provide practical, strategic counsel tailored to their unique needs. We take the time to understand how each business operates, the risks it faces, and the objectives it seeks to achieve. Our approach emphasizes thoughtful planning, careful drafting, and proactive problem-solving, allowing clients to make informed decisions with confidence.</p>
-    //                   <ul className="list-disc list-inside text-gray-200 mb-2">
-    //                     <li>Business Entity Formation and Structuring</li>
-    //                     <li>Contract Drafting, Review, and Negotiation</li>
-    //                     <li>Business Acquisitions and Sales</li>
-    //                     <li>Ownership Transitions and Succession Planning</li>
-    //                     <li>Business Dissolutions and Wind-Downs</li>
-    //                   </ul>
-    //                   <p className="text-gray-400 italic">Whether you are launching a new venture, formalizing relationships through well-crafted agreements, acquiring or selling a business, or navigating a transition or dissolution, Enwiya Law Firm provides clear, reliable legal guidance focused on protecting your interests and supporting your long-term success.</p>
-    //                 </>
-    //               ),
-    //             },
-    //             {
-    //               key: "estate",
-    //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></span>
-    //               ),
-    //               title: "Estate Planning",
-    //               content: (
-    //                 <>
-    //                   <p className="text-gray-300 mb-2">Estate planning is about more than distributing assets—it is about protecting loved ones, preserving what you have built, and ensuring your wishes are honored when it matters most. Without a clear and legally sound plan in place, families are often left to navigate uncertainty, unnecessary expense, and avoidable conflict during already difficult times.</p>
-    //                   <p className="text-gray-300 mb-2">At Enwiya Law Firm, we help individuals and families create thoughtful, customized estate plans that reflect their values, goals, and unique circumstances. We believe effective estate planning begins with listening. By understanding each client’s family dynamics, financial situation, and long-term objectives, we are able to craft plans that provide clarity, continuity, and peace of mind.</p>
-    //                   <ul className="list-disc list-inside text-gray-200 mb-2">
-    //                     <li>Wills and Revocable Living Trusts</li>
-    //                     <li>Powers of Attorney and Health Care Directives</li>
-    //                     <li>Asset Protection and Beneficiary Planning</li>
-    //                     <li>Trust Funding and Estate Plan Implementation</li>
-    //                     <li>Estate Planning for Business Owners and Families</li>
-    //                   </ul>
-    //                   <p className="text-gray-400 italic">Whether you are planning for the future, preparing for life’s uncertainties, or seeking to protect your legacy for the next generation, Enwiya Law Firm provides careful guidance and strategic counsel designed to safeguard your interests and support your family with confidence and dignity.</p>
-    //                 </>
-    //               ),
-    //             },
-    //             {
-    //               key: "probate",
-    //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
-    //               ),
-    //               title: "Probate & Trust Administration",
-    //               content: (
-    //                 <>
-    //                   <p className="text-gray-300 mb-2">The loss of a loved one is never easy, and the legal responsibilities that follow can feel overwhelming. Probate and trust administration often involve complex procedures, strict deadlines, and emotionally sensitive decisions—all at a time when families are focused on grieving and healing. Without experienced legal guidance, even straightforward estates can become unnecessarily time-consuming or contentious.</p>
-    //                   <p className="text-gray-300 mb-2">At Enwiya Law Firm, we guide personal representatives, trustees, and beneficiaries through the probate and trust administration process with care, clarity, and efficiency. Our approach emphasizes clear communication, practical problem-solving, and diligent administration, helping clients understand their responsibilities while minimizing stress and uncertainty. We work to ensure that estates and trusts are administered properly, efficiently, and in accordance with the law and the decedent’s intentions.</p>
-    //                   <ul className="list-disc list-inside text-gray-200 mb-2">
-    //                     <li>Informal Probate Proceedings</li>
-    //                     <li>Trust Administration and Trustee Guidance</li>
-    //                     <li>Estate and Trust Asset Management Support</li>
-    //                     <li>Creditor Claims and Notice Requirements</li>
-    //                     <li>Distribution of Assets to Beneficiaries</li>
-    //                     <li>Resolution of Probate and Trust-Related Issues</li>
-    //                   </ul>
-    //                   <p className="text-gray-400 italic">Whether you are serving as a personal representative or trustee, or you are a beneficiary seeking guidance, Enwiya Law Firm provides steady, knowledgeable support throughout the administration process. Our goal is to ease the legal burden during a difficult time while protecting your interests and honoring your loved one’s legacy.</p>
-    //                 </>
-    //               ),
-    //             },
-    //             {
-    //               key: "immigration",
-    //               icon: (
-    //                 <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
-    //               ),
-    //               title: "Immigration Law",
-    //               content: (
-    //                 <>
-    //                   <p className="text-gray-300 mb-2">For generations, the United States has represented opportunity, stability, and the promise of a better future. Individuals and families from around the world continue to answer that call—seeking to build lives, reunite with loved ones, and contribute to the communities they call home. Yet the immigration process itself can be complex, demanding, and,  overwhelming. Strict requirements, evolving regulations, and high stakes often leave individuals and families uncertain about their next steps.</p>
-    //                   <p className="text-gray-300 mb-2">Immigration law is a dynamic and detail-intensive area of practice that requires careful legal analysis, strategic planning, and clear guidance. At Enwiya Law Firm, we are committed to helping clients navigate this process with confidence. We take the time to understand each client’s goals and circumstances, explain available options in plain terms, and advocate diligently to protect their rights at every stage of the process.</p>
-    //                   <ul className="list-disc list-inside text-gray-200 mb-2">
-    //                     <li>Fiancé (K-1) Petitions</li>
-    //                     <li>Spousal and Family-Based Petitions</li>
-    //                     <li>Adjustment of Status</li>
-    //                     <li>Removal of Conditions on Permanent Residence</li>
-    //                     <li>Naturalization and U.S. Citizenship</li>
-    //                     <li>Permanent Resident Card (Green Card) Renewals</li>
-    //                     <li>USCIS Interview Preparation and Legal Advising</li>
-    //                   </ul>
-    //                   <p className="text-gray-400 italic">Enwiya Law Firm serves clients from diverse backgrounds and communities, offering personalized immigration counsel rooted in respect, diligence, and professionalism. Whether you are beginning your immigration journey or navigating a critical stage in the process, we are dedicated to providing steady guidance and strong advocacy as you pursue your future in the United States.</p>
-    //                 </>
-    //               ),
-    //             },
-    //           ].map((area, idx) => {
-    //             const [open, setOpen] = useState(idx === 0);
-    //             return (
-    //               <div key={area.key} className="relative bg-gradient-to-br from-[var(--headder-text-color)]/30 via-yellow-900/10 to-transparent border border-[var(--headder-text-color)] rounded-xl shadow-xl p-8 flex flex-col items-start transition-all">
-    //                 <div className="flex items-center w-full justify-between cursor-pointer select-none" onClick={() => setOpen((v) => !v)}>
-    //                   <div className="flex items-center gap-3">
-    //                     {area.icon}
-    //                     <h3 className="text-xl font-bold text-yellow-300 mb-2">{area.title}</h3>
-    //                   </div>
-    //                   <button className="ml-4 text-[var(--headder-text-color)] text-2xl focus:outline-none" aria-label={open ? 'Collapse' : 'Expand'}>
-    //                     {open ? '−' : '+'}
-    //                   </button>
-    //                 </div>
-    //                 <div
-    //                   className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-[1000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}
-    //                 >
-    //                   {area.content}
-    //                 </div>
-    //                 <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none">{area.icon}</span>
-    //               </div>
-    //             );
-    //           })}
-    //         </div>
-    //       </section>

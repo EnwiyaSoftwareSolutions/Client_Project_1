@@ -3,7 +3,8 @@ import axios from 'axios';
 
 
 type Review = {
-    id: number
+    id?: number
+    $id?: string
     comment: string
     rating: number
     reviewer_name: string

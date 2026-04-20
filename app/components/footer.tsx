@@ -107,9 +107,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/achievements" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                <Link href="/practice-areas" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
                   <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
-                  Achievements
+                  Practice Areas
                 </Link>
               </li>
               <li>
