@@ -106,10 +106,21 @@ const About = () => {
             </p>
           </section>
 
-
+          {/* Personal Interests Section */}
+          <section className="mt-4">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
+                Personal Interests
+              </h2>
+            </div>
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">
+              Outside of his practice, David enjoys reading, playing piano, and spending time with family and friends.
+            </p>
+          </section>
 
           {/* Credentials Accordion */}
-          <section className="mb-14">
+          <section className="mt-14 mb-14">
             <div className="flex items-center gap-3 mb-6">
               <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
               <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
@@ -121,7 +132,7 @@ const About = () => {
                 {
                   key: "Practice",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z" /></svg></span>
                   ),
                   title: "Areas of Practice",
                   content: (
@@ -139,32 +150,32 @@ const About = () => {
                 {
                   key: "Admission",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" /></svg></span>
                   ),
                   title: "Bar Admissions",
                   content: (
                     <>
                       <ul className="list-disc list-inside text-gray-200 mb-2">
                         <li className="text-[var(--muted-foreground)]">Arizona 2019</li>
-                       <li className="text-[var(--muted-foreground)]">Minnesota, 2023</li>
-<li className="text-[var(--muted-foreground)]">North Dakota, 2021</li>
-<li className="text-[var(--muted-foreground)]">State Bar of New Mexico (Inactive)</li>
+                        <li className="text-[var(--muted-foreground)]">Minnesota, 2023</li>
+                        <li className="text-[var(--muted-foreground)]">North Dakota, 2021</li>
+                        <li className="text-[var(--muted-foreground)]">State Bar of New Mexico (Inactive)</li>
                       </ul>
-                     
+
                     </>
                   ),
                 },
                 {
                   key: "Education",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg></span>
                   ),
                   title: "Education",
                   content: (
                     <>
                       <ul className="space-y-4 mb-2">
                         <li className="flex items-start gap-3">
-                     
+
                           <div>
                             <span className="font-semibold text-[var(--muted-foreground)]">Arizona Summit Law School</span><br />
                             <span className="text-[var(--muted-foreground)]">Phoenix, Arizona</span><br />
@@ -178,7 +189,7 @@ const About = () => {
                           </div>
                         </li>
                         <li className="flex items-start gap-3">
-                          
+
                           <div>
                             <span className="font-semibold text-[var(--muted-foreground)]">Arizona State University</span><br />
                             <span className="text-[var(--muted-foreground)]">B.S. – 2014</span><br />
@@ -187,26 +198,26 @@ const About = () => {
                           </div>
                         </li>
                       </ul>
-               
+
                     </>
                   ),
                 },
                 {
                   key: "Associations",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg></span>
                   ),
                   title: "Professional Associations and Memberships",
                   content: (
                     <>
-                     
+
                       <ul className="list-disc list-inside text-gray-200 mb-2">
-                       <li className="text-[var(--muted-foreground)]">State Bar of Arizona, Member</li>
-                       <li className="text-[var(--muted-foreground)]">State Bar of Minnesota, Member</li>
-                       <li className="text-[var(--muted-foreground)]">State Bar of North Dakota, Member</li>
-                       <li className="text-[var(--muted-foreground)]">State Bar of New Mexico, Member</li>
+                        <li className="text-[var(--muted-foreground)]">State Bar of Arizona, Member</li>
+                        <li className="text-[var(--muted-foreground)]">State Bar of Minnesota, Member</li>
+                        <li className="text-[var(--muted-foreground)]">State Bar of North Dakota, Member</li>
+                        <li className="text-[var(--muted-foreground)]">State Bar of New Mexico, Member</li>
                       </ul>
-                 
+
                     </>
                   ),
                 },
@@ -250,19 +261,6 @@ const About = () => {
                 );
               })}
             </div>
-          </section>
-
-          {/* Personal Interests Section */}
-          <section className="mt-4">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
-              <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
-                Personal Interests
-              </h2>
-            </div>
-            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">
-              Outside of his practice, David enjoys reading, playing piano, and spending time with family and friends.
-            </p>
           </section>
 
         </div>
