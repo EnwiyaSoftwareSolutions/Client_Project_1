@@ -90,17 +90,26 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --primary-accent: #a67a1f; /* gold accent: use var(--primary-accent) */
+  /* --primary-accent: #a67a1f; 
+   */
+    --primary-accent: #d4af37; 
+
   /* --headder-text-color:  #d4af37; */
-  --headder-text-color: #7b5a16;
+  /* --headder-text-color: #7b5a16; */
+    --headder-text-color: #f5c26b;
+
   --color-text-color: #000000;
-  --boxgradient-color: #b88b29;
+  /* --boxgradient-color: #b88b29; */
+  --boxgradient-color: #d4af37;
   --innerButton-color: var(--foreground);
   --innerButton-color: #000000;
-  --setBorderColorGold: #a97c20d9;
+  /* --setBorderColorGold: #a97c20d9; */
+  --setBorderColorGold: #d4af37d9;
   --font-geist-sans: "Libre Baskerville", serif;
   --headder-navbar-color: #111111;
   --navbar-font-color: #ffffff;
+  --text-headers-black: #000000;
+
 
   /* --gloabal-font: 'Geist Sans', sans-serif; */
 }

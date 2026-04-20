@@ -4,19 +4,26 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "./components/ui/button"
 // import Law from "./components/pArea/lawArea";
-import useReviews from "store/useReviews"
-
+import {useReviews, type ReviewsStore} from "store/useReviews"
 
 export default function Home() {
-  const {reviews, isLoading, isError, fetchReviews}=useReviews()
+  const reviews = useReviews((state) => state.reviews)
+  const isLoading = useReviews((state) => state.isLoading)
+  const isError = useReviews((state) => state.isError)
+  const fetchReviews = useReviews((state) => state.fetchReviews)
+  
+  useEffect(()=>{
+    void fetchReviews()
+  }, [fetchReviews])
+  
 
   const marqueeReviews = reviews.length > 0 ? [...reviews, ...reviews] : []
 
-  useEffect(()=>{
-    if(reviews.length===0 && !isLoading){
-      void fetchReviews()
-    }
-  },[fetchReviews, isLoading, reviews.length])
+  // useEffect(()=>{
+  //   if(reviews.length===0 && !isLoading){
+  //     void fetchReviews()
+  //   }
+  // },[fetchReviews, isLoading, reviews.length])
 
   return (
     <div className="min-h-screen text-[var(--foreground)]">
@@ -53,7 +60,7 @@ export default function Home() {
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[var(--headder-text-color)] mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-headers-black)] mb-6">
                 About Us
               </h2>
               <p className="text-[var(--muted-foreground)] font-[var(--gloabal-font)] text-lg mb-6">
@@ -82,7 +89,7 @@ export default function Home() {
       {/* <div className="bg-black" style={{clipPath: "polygon(0 0, 100% 0, 100% 58%, 100% 100%, 0 79%)"}}> */}
       <section className="py-16 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--headder-text-color)] text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-headers-black)] text-center mb-12">
             Our Services
           </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -141,7 +148,7 @@ export default function Home() {
       {/* Testimonials Section */}
       <section className="py-16 px-6">
         <div className="container mx-auto max-w-full">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--headder-text-color)] text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-headers-black)] text-center mb-12">
             What Our Clients Say
           </h2>
           {isError && (
@@ -163,17 +170,17 @@ export default function Home() {
             <div className="review-marquee">
               <div
                 className="review-track"
-                style={{ "--review-marquee-duration": "25s" } as CSSProperties}
+                style={{ "--review-marquee-duration": "60s" } as CSSProperties}
               >
-                {marqueeReviews.map((r, index) => (
+                {marqueeReviews.map((r: any, index: number) => (
                   <div
                     key={`${r.id}-${index}`}
                     className="review-card relative relative bg-gradient-to-br from-[var(--boxgradient-color)]/20 via-[var(--primary-accent)]/8 to-transparent border border-[var(--setBorderColorGold)] rounded-xl shadow-md p-6 flex flex-col items-start backdrop-blur-sm"
                   >
                     <p className="text-[var(--muted-foreground)] italic mb-4">
-                      {r.text}
+                      {r.comment}
                     </p>
-                    <p className="text-[var(--headder-text-color)] font-semibold">- {r.name}</p>
+                    <p className="text-[var(--headder-text-color)] font-semibold">- {r.reviewer_name}</p>
                     <svg className="absolute right-6 top-6 w-6 h-6 text-[var(--primary-accent)] opacity-10 pointer-events-none select-none" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                       <path d="M12 .587l3.668 7.431L24 9.75l-6 5.847L19.335 24 12 20.013 4.665 24 6 15.597 0 9.75l8.332-1.732L12 .587z" />
                     </svg>
@@ -188,7 +195,7 @@ export default function Home() {
       {/* Contact CTA Section */}
       <section className="py-16 px-6 ">
         <div className="container mx-auto max-w-6xl text-center ">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--headder-text-color)]  mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-headers-black)]  mb-6">
             Ready to Get Started?
           </h2>
           <p className="text-[var(--muted-foreground)] text-lg mb-8">

@@ -4,12 +4,30 @@ import Link from "next/link"
 import { Separator } from "./ui/separator"
 import logoImage from '../../utils/img/fulllogo_transparent.png'
 import { usePathname } from "next/navigation"
-import userInfo from '../data/userInfo'
+import { useEffect } from "react"
 import { ArrowRight, Mail, MapPin, Phone, Scale } from "lucide-react"
+import { OfficeInfo, useOfficeInfoStore } from "../../store/useOfficeInfoStore"
 
 
 export function Footer() {
   const pathname = usePathname();
+  const officeInfo = useOfficeInfoStore((state) => state.officeInfo)
+  const fetchOfficeInfo = useOfficeInfoStore((state) => state.fetchOfficeInfo)
+
+  useEffect(() => {
+    if (!officeInfo) {
+      void fetchOfficeInfo()
+    }
+  }, [fetchOfficeInfo, officeInfo])
+
+  const officeList: OfficeInfo[] = officeInfo?.documents ?? []
+
+  const preferredOffice = officeList.find((office) => {
+    const rawName = office.office_name ?? office.name ?? ""
+    return rawName.trim().toLowerCase() === "enwiya law firm"
+  })
+
+  const displayOffices = preferredOffice ? [preferredOffice] : officeList.slice(0, 1)
 
   return (
     <div>
@@ -103,24 +121,28 @@ export function Footer() {
             </ul>
           </div>
           {/* Contact */}
-          {userInfo && userInfo.map((i)=>{
+          {displayOffices.map((i)=>{
             return (
-              <div key={i.name}>
+              <div key={i.$id ?? i.id ?? i.office_email ?? i.office_phone_number}>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--headder-text-color)]">
                   Contact
                 </h3>
                 <ul className="space-y-3 text-sm text-[var(--muted-foreground)]">
                   <li className="flex items-start gap-3">
                     <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
-                    <span>{i.address}</span>
+                    <span>{i.office_address || i.mailing_address}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
-                    <a href={`tel:${i.phone}`} className="transition-colors hover:text-[var(--primary-accent)]">{i.phone}</a>
+                    <a href={`tel:${i.office_phone_number}`} className="transition-colors hover:text-[var(--primary-accent)]">{i.office_phone_number}</a>
                   </li>
                   <li className="flex items-start gap-3">
                     <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
-                    <a href={`mailto:${i.email}`} className="break-all transition-colors hover:text-[var(--primary-accent)]">{i.email}</a>
+                    <a href={`mailto:${i.office_email}`} className="break-all transition-colors hover:text-[var(--primary-accent)]">{i.office_email}</a>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
+                    <a className="break-all transition-colors hover:text-[var(--primary-accent)]">{i.mailing_address}</a>
                   </li>
                 </ul>
                 <Link
@@ -141,7 +163,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="flex flex-col items-center justify-between gap-4 text-center text-xs uppercase tracking-[0.08em] text-[var(--muted-foreground)]/90 md:flex-row md:text-left">
           <p>
-            © {new Date().getFullYear()} Enwiya Lawfare. All rights reserved.
+            © {new Date().getFullYear()} Enwiya Lawfirm. All rights reserved.
           </p>
           <p className="md:text-right">
             Attorney Advertising. Prior results do not guarantee a similar outcome.

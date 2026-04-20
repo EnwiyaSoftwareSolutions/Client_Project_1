@@ -1,43 +1,113 @@
-import { FaRegFileAlt, FaDashcube} from "react-icons/fa";
+import Link from "next/link";
+import { FaArrowRight, FaCheckCircle, FaFileSignature, FaRegFileAlt, FaShieldAlt, FaUserFriends, FaWallet } from "react-icons/fa";
 
 const Estate = () => {
+    const services = [
+        {
+            icon: <FaFileSignature className="text-lg text-[var(--headder-text-color)]" aria-hidden />,
+            title: "Wills and Revocable Living Trusts",
+            description: "Design foundational estate documents that reflect your wishes and provide clear direction for your family.",
+        },
+        {
+            icon: <FaUserFriends className="text-lg text-[var(--headder-text-color)]" aria-hidden />,
+            title: "Powers of Attorney and Health Directives",
+            description: "Prepare trusted decision-making documents for financial and medical matters when support is needed.",
+        },
+        {
+            icon: <FaShieldAlt className="text-lg text-[var(--headder-text-color)]" aria-hidden />,
+            title: "Asset Protection Planning",
+            description: "Structure your plan to preserve family assets and reduce avoidable conflict and administrative burdens.",
+        },
+        {
+            icon: <FaWallet className="text-lg text-[var(--headder-text-color)]" aria-hidden />,
+            title: "Trust Funding and Plan Implementation",
+            description: "Ensure documents are properly funded and coordinated so your estate plan works effectively in practice.",
+        },
+    ];
+
     return (
-        <main className="min-h-screen text-[var(--color-text-color)] via-yellow-900/5 to-black py-12 px-4">
-            <div className="max-w-3xl mx-auto">
-                <div className="relative bg-gradient-to-br from-[var(--headder-text-color)]/40 via-yellow-900/10 to-transparent border border-[var(--headder-text-color)] rounded-2xl shadow-2xl p-10 overflow-hidden">
-                    <div className="flex items-center gap-4 mb-6">
-                        <span className="text-5xl md:text-6xl text-yellow-300 drop-shadow"><FaRegFileAlt className="text-4xl text-[var(--headder-text-color)] drop-shadow" /></span>
-                        <h1 className="text-3xl md:text-4xl font-extrabold text-[var(--headder-text-color)] tracking-tight drop-shadow">Estate Planning</h1>
+        <main className="min-h-screen px-4 py-12 text-[var(--foreground)] md:px-6">
+            <div className="mx-auto max-w-6xl space-y-8">
+                <section className="relative overflow-hidden rounded-3xl border border-[var(--setBorderColorGold)]/45 bg-gradient-to-br from-[var(--boxgradient-color)]/16 via-transparent to-[var(--primary-accent)]/10 p-8 shadow-xl md:p-12">
+                    <span className="pointer-events-none absolute -right-8 -top-8 h-44 w-44 rounded-full bg-[var(--primary-accent)]/10 blur-3xl" />
+                    <span className="pointer-events-none absolute -left-12 bottom-0 text-[10rem] opacity-5 select-none"><FaRegFileAlt /></span>
+
+                    <div className="relative z-10 grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-end">
+                        <div>
+                            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--setBorderColorGold)]/55 bg-[var(--primary-accent)]/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--headder-text-color)]">
+                                <FaRegFileAlt aria-hidden />
+                                Estate Planning
+                            </div>
+
+                            <h1 className="text-3xl font-bold leading-tight text-[var(--headder-text-color)] md:text-5xl">
+                                Protect Your Legacy With a Thoughtful Estate Plan
+                            </h1>
+
+                            <p className="mt-6 max-w-3xl text-base leading-relaxed text-[var(--muted-foreground)] md:text-lg">
+                                Estate planning is about safeguarding loved ones, preserving your achievements, and ensuring your wishes are carried out with clarity and confidence.
+                            </p>
+                        </div>
+
+                        <div className="rounded-2xl border border-[var(--setBorderColorGold)]/45 bg-[var(--card)]/55 p-6 shadow-lg backdrop-blur-sm">
+                            <h2 className="text-lg font-semibold text-[var(--headder-text-color)]">How We Help</h2>
+                            <ul className="mt-4 space-y-3 text-sm text-[var(--muted-foreground)]">
+                                <li className="flex items-start gap-2">
+                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    Customized plans based on your family and financial goals
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    Practical strategies to reduce probate exposure and uncertainty
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    Ongoing updates as your life and assets evolve
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                </section>
 
-                    <p className="text-[var(--color-text-color)] text-lg mt-6 mb-4 leading-relaxed">
-                        Estate planning is about more than distributing assets — it’s about protecting loved ones, preserving your lifetime achievements, and ensuring your wishes are honored. Thoughtful planning reduces uncertainty and protects your family when it matters most.
+                <section className="rounded-3xl border border-[var(--setBorderColorGold)]/35 bg-[var(--card)]/45 p-8 shadow-lg backdrop-blur-sm md:p-10">
+                    <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] md:text-3xl">Estate Planning Services</h2>
+                    <p className="mt-3 max-w-3xl text-[var(--muted-foreground)]">
+                        Compassionate and strategic planning services designed to protect your interests now and provide peace of mind for the future.
                     </p>
 
-                    <p className="text-[var(--color-text-color)] text-lg mb-6 leading-relaxed">
-                        At Enwiya Law Firm we craft customized estate plans that address wills, trusts, powers of attorney, healthcare directives, and strategies to minimize probate and tax exposure while maintaining flexibility for changing circumstances.
-                    </p>
-
-                    <div className="my-8">
-                        <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">Our Estate Planning Services</h2>
-                        <ul className="list-none space-y-3">
-                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Wills & Revocable Living Trusts</li>
-                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Powers of Attorney & Health Care Directives</li>
-                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Asset Protection & Beneficiary Planning</li>
-                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Trust Funding & Estate Plan Implementation</li>
-                            <li className="flex items-center gap-3"><FaDashcube className="text-[var(--headder-text-color)] text-lg" />Estate Planning for Business Owners</li>
-                        </ul>
+                    <div className="mt-8 grid gap-4 md:grid-cols-2">
+                        {services.map((service) => (
+                            <article
+                                key={service.title}
+                                className="rounded-2xl border border-[var(--setBorderColorGold)]/30 bg-gradient-to-br from-[var(--boxgradient-color)]/10 via-transparent to-[var(--primary-accent)]/8 p-5 transition-colors hover:border-[var(--setBorderColorGold)]/55"
+                            >
+                                <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--primary-accent)]/18">
+                                    {service.icon}
+                                </div>
+                                <h3 className="text-lg font-semibold text-[var(--headder-text-color)]">{service.title}</h3>
+                                <p className="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">{service.description}</p>
+                            </article>
+                        ))}
                     </div>
+                </section>
 
-                    <hr className="border-[var(--headder-text-color)]/30 my-6" />
+                <section className="rounded-3xl border border-[var(--setBorderColorGold)]/40 bg-gradient-to-r from-[var(--boxgradient-color)]/15 via-transparent to-[var(--primary-accent)]/10 p-7 md:p-9">
+                    <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                        <div>
+                            <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">Ready to Build or Update Your Estate Plan?</h2>
+                            <p className="mt-2 max-w-3xl text-[var(--muted-foreground)]">
+                                From first-time planning to comprehensive updates, we help you create a plan that protects what matters most.
+                            </p>
+                        </div>
 
-                    <p className="text-[var(--color-text-color)] italic text-lg">
-                        Whether you are planning for the future or updating an existing plan, Enwiya Law Firm provides compassionate, practical guidance to help secure your legacy and protect those you care about.
-                    </p>
-
-                    <span className="absolute right-6 top-6 opacity-10 text-8xl pointer-events-none select-none"><FaRegFileAlt /></span>
-                    <span className="absolute left-0 bottom-0 opacity-5 text-[10rem] pointer-events-none select-none"><FaRegFileAlt /></span>
-                </div>
+                        <Link
+                            href="/contact"
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--setBorderColorGold)]/55 bg-[var(--primary-accent)]/16 px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--headder-text-color)] transition-all hover:-translate-y-0.5 hover:bg-[var(--primary-accent)]/24"
+                        >
+                            Schedule Consultation
+                            <FaArrowRight className="text-xs" aria-hidden />
+                        </Link>
+                    </div>
+                </section>
             </div>
         </main>
     );

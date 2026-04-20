@@ -3,16 +3,18 @@
 import { useEffect } from "react"
 
 import ReviewCarousel from "../components/ui/Review"
-import useReviews from "../../store/useReviews"
+import {useReviews} from "../../store/useReviews"
 
 export default function Reviews() {
-  const { reviews, isLoading, isError, fetchReviews } = useReviews()
+ const reviews = useReviews((state) => state.reviews)
+  const isLoading = useReviews((state) => state.isLoading)
+  const isError = useReviews((state) => state.isError)
+  const fetchReviews = useReviews((state) => state.fetchReviews)
 
-  useEffect(() => {
-    if (reviews.length === 0 && !isLoading) {
-      void fetchReviews()
-    }
-  }, [fetchReviews, isLoading, reviews.length])
+
+    useEffect(()=>{
+    void fetchReviews()
+  }, [fetchReviews])
   return (
     <main className="min-h-screen text-[var(--foreground)]">
       <div className="container mx-auto max-w-6xl px-6 py-16">
@@ -47,17 +49,22 @@ export default function Reviews() {
                 )}
                 {reviews.slice(0, 6).map((r) => (
                   <article key={r.id} className="flex items-start gap-4 rounded-lg border border-[var(--setBorderColorGold)] bg-[var(--card)]/10 p-4 shadow group hover:scale-[1.02] transition-transform">
-                    <img
+                    {/* <img
                       src={r.image}
                       alt={r.name}
                       className="h-12 w-12 flex-none rounded-full object-cover ring-2 ring-[var(--setBorderColorGold)]"
-                    />
+                    /> */}
+                    
+                    <div className="h-12 w-12 flex-none rounded-full bg-[var(--setBorderColorGold)] flex items-center justify-center text-[var(--headder-text-color)] font-bold">
+                      {r.reviewer_name.split(" ").map((n) => n[0]).join("").toUpperCase()}
+                    </div>
+
                     <div>
-                      <p className="font-semibold text-[var(--headder-text-color)]">{r.name}</p>
-                      <p className="text-xs text-[var(--muted-foreground)]">{r.job}</p>
+                      <p className="font-semibold text-[var(--headder-text-color)]">{r.reviewer_name}</p>
+                      {/* <p className="text-xs text-[var(--muted-foreground)]">{r.job}</p> */}
                       <p className="mt-2 text-sm text-[var(--muted-foreground)]">
-                        {r.text.substring(0, 120)}
-                        {r.text.length > 120 ? "..." : ""}
+                        {r.comment.substring(0, 120)}
+                        {r.comment.length > 120 ? "..." : ""}
                       </p>
                     </div>
                   </article>

@@ -41,7 +41,7 @@ const About = () => {
 
           {/* Biography Section */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--text-headers-black)] mb-4">
               Biography
             </h2>
             <p className="text-[var(--muted-foreground)] text-lg leading-relaxed mb-6">
@@ -67,7 +67,7 @@ const About = () => {
 
           {/* Education Section */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--text-headers-black)] mb-4">
               Education
             </h2>
             <p className="text-[var(--muted-foreground)] text-lg leading-relaxed mb-4">
@@ -128,10 +128,10 @@ const About = () => {
                       {/* <p className="text-gray-300 mb-2">Estate planning is about more than distributing assets—it is about protecting loved ones, preserving what you have built, and ensuring your wishes are honored when it matters most. Without a clear and legally sound plan in place, families are often left to navigate uncertainty, unnecessary expense, and avoidable conflict during already difficult times.</p>
                       <p className="text-gray-300 mb-2">At Enwiya Law Firm, we help individuals and families create thoughtful, customized estate plans that reflect their values, goals, and unique circumstances. We believe effective estate planning begins with listening. By understanding each client’s family dynamics, financial situation, and long-term objectives, we are able to craft plans that provide clarity, continuity, and peace of mind.</p> */}
                       <ul className="list-disc list-inside text-gray-200 mb-2">
-                        <li>Arizona 2019</li>
-                       <li>Minnesota, 2023</li>
-<li>North Dakota, 2021</li>
-<li>State Bar of New Mexico (Inactive)</li>
+                        <li className="text-[var(--muted-foreground)]">Arizona 2019</li>
+                       <li className="text-[var(--muted-foreground)]">Minnesota, 2023</li>
+<li className="text-[var(--muted-foreground)]">North Dakota, 2021</li>
+<li className="text-[var(--muted-foreground)]">State Bar of New Mexico (Inactive)</li>
                       </ul>
                       {/* <p className="text-gray-400 italic">Whether you are planning for the future, preparing for life’s uncertainties, or seeking to protect your legacy for the next generation, Enwiya Law Firm provides careful guidance and strategic counsel designed to safeguard your interests and support your family with confidence and dignity.</p> */}
                     </>
@@ -203,7 +203,7 @@ const About = () => {
                     <div className="flex items-center w-full justify-between cursor-pointer select-none" onClick={() => setOpenIndex(isOpen ? null : idx)}>
                       <div className="flex items-center gap-3">
                         {area.icon}
-                        <h3 className="text-xl font-bold text-[var(--primary-accent)] mb-2">{area.title}</h3>
+                        <h3 className="text-xl font-bold text-[var(--text-headder-black)] mb-2">{area.title}</h3>
                       </div>
                       <button className="ml-4 text-[var(--headder-text-color)] text-2xl focus:outline-none" aria-label={isOpen ? 'Collapse' : 'Expand'}>
                         {isOpen ? '−' : '+'}
@@ -223,7 +223,7 @@ const About = () => {
 
           {/* Personal Interests Section */}
           <section>
-            <h2 className="text-2xl font-semibold text-[var(--headder-text-color)] mb-4">Personal Interests</h2>
+            <h2 className="text-2xl font-semibold text-[var(--text-headers-black)] mb-4">Personal Interests</h2>
             <p className="text-[var(--muted-foreground)] text-lg leading-relaxed">Outside of his practice, David enjoys reading, playing piano, and spending time with family and friends.</p>
           </section>
         </div>
