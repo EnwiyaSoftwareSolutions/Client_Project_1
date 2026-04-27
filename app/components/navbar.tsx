@@ -7,24 +7,35 @@ import { cn } from "../../lib/utils";
 import { Button } from "./ui/button";
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
+  NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
 } from "./ui/navigation-menu";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import logoImage from "../../utils/img/fulllogo_transparent.png";
 
 const navItems = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Reviews", href: "/reviews" },
-  { name: "Practice Areas", href: "/practice-area" },
   { name: "Contact", href: "/contact" },
+];
+
+const practiceAreaItems = [
+  { name: "Corporate Law", href: "/practice-area/corporate" },
+  { name: "Estate Planning", href: "/practice-area/estate" },
+  { name: "Immigration Law", href: "/practice-area/immigration" },
+  { name: "Probate", href: "/practice-area/probate" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPracticeMenuOpen, setIsPracticeMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isPracticeRoute = pathname?.startsWith("/practice-area");
 
   // Handle scroll effect for navbar background
   useEffect(() => {
@@ -56,6 +67,7 @@ export function Navbar() {
       return;
     }
     setIsMenuOpen(false);
+    setIsPracticeMenuOpen(false);
   }, [pathname]);
 
   const toggleMenu = useCallback(() => {
@@ -93,7 +105,7 @@ export function Navbar() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex lg:items-center lg:gap-8">
-              <NavigationMenu>
+              <NavigationMenu viewport={false}>
                 <NavigationMenuList className="flex items-center gap-1">
                   {navItems.map((item) => {
                     const isActive = pathname === item.href;
@@ -105,7 +117,7 @@ export function Navbar() {
                             "relative px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
                             "rounded-md hover:bg-white/5",
                             isActive
-                              ? "text-[var(--headder-text-color)] bg-white/5"
+                              ? "text-[var(--headder-text-color)] "
                               : "text-[var(--navbar-font-color)] hover:text-[var(--headder-text-color)]"
                           )}
                         >
@@ -117,6 +129,55 @@ export function Navbar() {
                       </NavigationMenuItem>
                     );
                   })}
+
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger
+                      className={cn(
+                        "relative rounded-md bg-transparent px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
+                        "hover:bg-white/5 hover:text-[var(--headder-text-color)]data-[state=open]:text-[var(--headder-text-color)]",
+                        isPracticeRoute
+                          ? "text-[var(--headder-text-color)]"
+                          : "text-[var(--navbar-font-color)]"
+                      )}
+                    >
+                      <span className="inline-flex items-center gap-1.5">
+                        Practice Areas
+                        {/* <ChevronDown className="h-3.5 w-3.5" /> */}
+                      </span>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="w-[300px] rounded-lg border border-white/10 bg-[#0b0b0b]/95 p-2 shadow-xl backdrop-blur-md">
+                        <Link
+                          href="/practice-area"
+                          className="mb-1 block rounded-md px-3 py-2 text-sm font-semibold text-[var(--headder-text-color)] transition-colors"
+                        >
+                          View All Practice Areas
+                        </Link>
+                        <ul className="space-y-1">
+                        {practiceAreaItems.map((area) => {
+                          const isActive = pathname === area.href;
+                          return (
+                            <li key={area.href}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  href={area.href}
+                                  className={cn(
+                                    "block rounded-md px-3 py-2 text-sm transition-colors",
+                                    isActive
+                                      ? "bg-white/5 text-[var(--headder-text-color)]"
+                                      : "text-[var(--navbar-font-color)] hover:bg-white/5 hover:text-[var(--headder-text-color)]"
+                                  )}
+                                >
+                                  {area.name}
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
+                          );
+                        })}
+                        </ul>
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
 
@@ -233,6 +294,71 @@ export function Navbar() {
                     </Link>
                   );
                 })}
+
+                <button
+                  type="button"
+                  onClick={() => setIsPracticeMenuOpen((prev) => !prev)}
+                  aria-expanded={isPracticeMenuOpen}
+                  className={cn(
+                    "group flex w-full items-center justify-between rounded-xl px-4 py-4",
+                    "text-lg font-medium transition-all duration-200",
+                    "border border-transparent",
+                    isPracticeRoute || isPracticeMenuOpen
+                      ? "bg-[var(--primary-accent)]/10 text-[var(--primary-accent)] border-[var(--primary-accent)]/20"
+                      : "text-gray-300 hover:bg-white/5 hover:text-white hover:border-white/10"
+                  )}
+                >
+                  <span className="flex items-center gap-3">
+                    <span
+                      className={cn(
+                        "h-2 w-2 rounded-full transition-all duration-200",
+                        isPracticeRoute || isPracticeMenuOpen
+                          ? "bg-[var(--primary-accent)]"
+                          : "bg-gray-600 group-hover:bg-gray-400"
+                      )}
+                    />
+                    Practice Areas
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 transition-transform duration-200",
+                      isPracticeMenuOpen && "rotate-180"
+                    )}
+                  />
+                </button>
+
+                {isPracticeMenuOpen && (
+                  <div className="ml-5 mt-1 flex flex-col gap-2">
+                    <Link
+                      href="/practice-area"
+                      className={cn(
+                        "rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-200",
+                        pathname === "/practice-area"
+                          ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/10 text-[var(--primary-accent)]"
+                          : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
+                      )}
+                    >
+                      View All Practice Areas
+                    </Link>
+                    {practiceAreaItems.map((area) => {
+                      const isActive = pathname === area.href;
+                      return (
+                        <Link
+                          key={area.href}
+                          href={area.href}
+                          className={cn(
+                            "rounded-lg border px-3 py-2 text-sm transition-all duration-200",
+                            isActive
+                              ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/10 text-[var(--primary-accent)]"
+                              : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
+                          )}
+                        >
+                          {area.name}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </nav>
 

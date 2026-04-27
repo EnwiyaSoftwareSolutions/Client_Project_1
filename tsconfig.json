@@ -47,7 +47,7 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "app/components/table.tsx"  ],
   "exclude": [
     "node_modules"
   ]

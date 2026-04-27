@@ -250,7 +250,7 @@ export default function Home() {
       <section className="py-16 px-6">
         <div className="container mx-auto max-w-full">
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-headers-black)] text-center mb-12">
-            What Our Clients Say
+            Client Testimonials
           </h2>
           {isError && (
             <p className="mb-6 text-center text-sm text-[var(--muted-foreground)]">

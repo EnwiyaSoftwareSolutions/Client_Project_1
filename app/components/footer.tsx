@@ -8,6 +8,62 @@ import { useEffect } from "react"
 import { ArrowRight, Mail, MapPin, Phone, Scale } from "lucide-react"
 import { OfficeInfo, useOfficeInfoStore } from "../../store/useOfficeInfoStore"
 
+const ZERO_WIDTH = "\u200B"
+
+const withHiddenSeparators = (value: string) => value.split("").join(ZERO_WIDTH)
+const keepDialableChars = (value: string) => value.replace(/[^\d+]/g, "")
+
+function SafePhone({ phone }: { phone?: string }) {
+  if (!phone) {
+    return <span>Phone unavailable</span>
+  }
+
+  const dialValue = keepDialableChars(phone)
+  const obfuscatedDisplay = withHiddenSeparators(phone)
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        if (!dialValue) return
+        window.location.href = `tel:${dialValue}`
+      }}
+      className="text-left transition-colors hover:text-[var(--primary-accent)]"
+      aria-label="Call us"
+    >
+      {obfuscatedDisplay}
+    </button>
+  )
+}
+
+function SafeEmail({ email }: { email?: string }) {
+  if (!email) {
+    return <span>Email unavailable</span>
+  }
+
+  const [local, domain] = email.split("@")
+
+  if (!local || !domain) {
+    return <span>{email}</span>
+  }
+
+  const obfuscatedDisplay = withHiddenSeparators(`${local}@${domain}`)
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        const actualEmail = `${local}@${domain}`
+        window.location.href = `mailto:${actualEmail}`
+      }}
+      className="break-all text-left transition-colors hover:text-[var(--primary-accent)]"
+      aria-label="Send us an email"
+    >
+      {obfuscatedDisplay}
+    </button>
+  )
+}
+
 
 export function Footer() {
   const pathname = usePathname();
@@ -134,11 +190,11 @@ export function Footer() {
                   </li>
                   <li className="flex items-start gap-3">
                     <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
-                    <a href={`tel:${i.office_phone_number}`} className="transition-colors hover:text-[var(--primary-accent)]">{i.office_phone_number}</a>
+                    <SafePhone phone={i.office_phone_number} />
                   </li>
                   <li className="flex items-start gap-3">
                     <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
-                    <a href={`mailto:${i.office_email}`} className="break-all transition-colors hover:text-[var(--primary-accent)]">{i.office_email}</a>
+                    <SafeEmail email={i.office_email} />
                   </li>
                   <li className="flex items-start gap-3">
                     <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />

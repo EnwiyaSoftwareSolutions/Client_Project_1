@@ -14,6 +14,7 @@ import {
   CardFooter,
 } from "./ui/card"
 import { useMessageStore } from "../../store/useMessageStore"
+import { userRegister } from "../../store/useUserRegisterStore"
 
 type ContactFormValues = {
   name: string
@@ -25,6 +26,7 @@ type ContactFormValues = {
 
 export function ContactForm() {
   const { setMessage, sendMSG } = useMessageStore()
+  const saveRegister = userRegister((state) => state.saveRegister)
   const [values, setValues] = useState<ContactFormValues>({
     name: "",
     email: "",
@@ -51,7 +53,15 @@ export function ContactForm() {
     setSubmitting(true)
 
     try {
-      await sendMSG(values)
+      await Promise.all([
+        sendMSG(values),
+        saveRegister({
+          full_name: values.name,
+          user_email: values.email,
+          user_phonenumber: values.phone,
+        }),
+      ])
+
       setMessage(values)
       setSubmitted(true)
     } catch (error) {
@@ -105,7 +115,7 @@ export function ContactForm() {
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <Input
                   name="phone"
-                  placeholder="Phone (optional)"
+                  placeholder="Phone"
                   value={values.phone}
                   onChange={onChange}
                   className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
