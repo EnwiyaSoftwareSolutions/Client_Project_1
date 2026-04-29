@@ -149,7 +149,7 @@ export function ContactForm() {
           <Button
             type="submit"
             disabled={submitting || submitted}
-            className="ml-auto bg-(--headder-text-color) focus:ring-(--primary-accent) mt-[10px]"
+            className="ml-auto bg-(--item-color-schema) focus:ring-(--primary-accent) mt-[10px]"
           >
             {submitting ? "Sending..." : submitted ? "Sent" : "Send Message"}
           </Button>

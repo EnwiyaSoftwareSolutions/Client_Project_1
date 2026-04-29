@@ -35,17 +35,38 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPracticeMenuOpen, setIsPracticeMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileHeaderVisible, setIsMobileHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const isPracticeRoute = pathname?.startsWith("/practice-area");
 
   // Handle scroll effect for navbar background
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      if (isMenuOpen) {
+        setIsMobileHeaderVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      const isScrollingDown = currentScrollY > lastScrollY.current;
+      const hasScrolledEnough = currentScrollY > 80;
+
+      if (isScrollingDown && hasScrolledEnough) {
+        setIsMobileHeaderVisible(false);
+      } else {
+        setIsMobileHeaderVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    lastScrollY.current = window.scrollY;
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMenuOpen]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -66,6 +87,7 @@ export function Navbar() {
       isInitialMount.current = false;
       return;
     }
+    setIsMobileHeaderVisible(true);
     setIsMenuOpen(false);
     setIsPracticeMenuOpen(false);
   }, [pathname]);
@@ -83,30 +105,35 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
-          isScrolled || isMenuOpen
-            ? "bg-[#0b0b0b]/95 backdrop-blur-md shadow-lg border-b border-white/10"
-            : "bg-[var(--headder-navbar-color)] backdrop-blur-sm"
+          "fixed inset-x-0 top-0 z-50 transform transition-all duration-300 ease-in-out lg:translate-y-0",
+       
         )}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
+        <div className="mx-auto max-w-7xl px-3 pt-3 sm:px-6 lg:px-8">
+          <div
+            className={cn(
+              "flex h-16 items-center justify-between rounded-2xl border px-3 sm:px-4",
+              isScrolled || isMenuOpen
+                ? "border-white/15 bg-[#050505]/75 shadow-[0_12px_45px_-20px_rgba(0,0,0,0.9)]"
+                : "border-white/10 bg-[#080808]/90"
+            )}
+          >
             {/* Logo */}
             <Link 
               href="/" 
-              className="flex-shrink-0 transition-opacity duration-200 hover:opacity-80"
+              className="flex flex-shrink-0 items-center transition-opacity duration-200 hover:opacity-85"
             >
               <img
                 src={logoImage.src}
                 alt="Enwiya Lawfare"
-                className="h-12 w-auto md:h-14"
+                className="h-9 w-auto sm:h-10"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex lg:items-center lg:gap-8">
+            <nav className="hidden lg:flex lg:items-center lg:gap-4">
               <NavigationMenu viewport={false}>
-                <NavigationMenuList className="flex items-center gap-1">
+                <NavigationMenuList className="flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1 backdrop-blur-xl">
                   {navItems.map((item) => {
                     const isActive = pathname === item.href;
                     return (
@@ -114,16 +141,15 @@ export function Navbar() {
                         <Link
                           href={item.href}
                           className={cn(
-                            "relative px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
-                            "rounded-md hover:bg-white/5",
+                            "relative rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
                             isActive
-                              ? "text-[var(--headder-text-color)] "
-                              : "text-[var(--navbar-font-color)] hover:text-[var(--headder-text-color)]"
+                              ? "bg-[var(--item-color-schema)]/15 text-[var(--item-color-schema)]"
+                              : "text-[var(--navbar-font-color)] hover:bg-white/8 hover:text-[var(--item-color-schema)]"
                           )}
                         >
                           {item.name}
                           {isActive && (
-                            <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-[var(--primary-accent)]" />
+                            <span className="absolute bottom-1 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[var(--primary-accent)]" />
                           )}
                         </Link>
                       </NavigationMenuItem>
@@ -132,24 +158,24 @@ export function Navbar() {
 
                   <NavigationMenuItem>
                     <NavigationMenuTrigger
-                      className={cn(
-                        "relative rounded-md bg-transparent px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
-                        "hover:bg-white/5 hover:text-[var(--headder-text-color)]data-[state=open]:text-[var(--headder-text-color)]",
-                        isPracticeRoute
-                          ? "text-[var(--headder-text-color)]"
-                          : "text-[var(--navbar-font-color)]"
-                      )}
+                     className={cn(
+                            "relative rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
+                            isPracticeRoute
+                              ? "bg-[var(--primary-accent)]/15 text-[var(--item-color-schema)]"
+                              : "text-[var(--navbar-font-color)] hover:bg-white/8 hover:text-[var(--item-color-schema)]"
+                          )}
+                    
                     >
                       <span className="inline-flex items-center gap-1.5">
                         Practice Areas
                         {/* <ChevronDown className="h-3.5 w-3.5" /> */}
                       </span>
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="w-[300px] rounded-lg border border-white/10 bg-[#0b0b0b]/95 p-2 shadow-xl backdrop-blur-md">
+                    <NavigationMenuContent className="m-0 w-auto bg-transparent p-0">
+                      <div className="w-[320px] rounded-xl border border-white/10 bg-[#0b0b0b]/95 p-2 shadow-2xl backdrop-blur-2xl">
                         <Link
                           href="/practice-area"
-                          className="mb-1 block rounded-md px-3 py-2 text-sm font-semibold text-[var(--headder-text-color)] transition-colors"
+                          className="mb-1 block rounded-lg px-3 py-2 text-sm font-semibold text-[var(--headder-text-color)] transition-colors hover:bg-white/5 hover:text-[var(--primary-accent)]"
                         >
                           View All Practice Areas
                         </Link>
@@ -162,10 +188,10 @@ export function Navbar() {
                                 <Link
                                   href={area.href}
                                   className={cn(
-                                    "block rounded-md px-3 py-2 text-sm transition-colors",
+                                    "block rounded-lg px-3 py-2 text-sm transition-colors",
                                     isActive
-                                      ? "bg-white/5 text-[var(--headder-text-color)]"
-                                      : "text-[var(--navbar-font-color)] hover:bg-white/5 hover:text-[var(--headder-text-color)]"
+                                      ? "bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
+                                      : "text-white/90 hover:bg-white/5 hover:text-[var(--primary-accent)]"
                                   )}
                                 >
                                   {area.name}
@@ -185,10 +211,9 @@ export function Navbar() {
               <Button
                 asChild
                 className={cn(
-                  "ml-4 transition-all duration-200",
-                  "bg-[var(--headder-text-color)] text-black font-semibold",
-                  "hover:bg-[var(--primary-accent)]/90 hover:scale-105",
-                  "shadow-lg hover:shadow-xl"
+                  "ml-1 rounded-full border border-[var(--item-color-schema)]/30 px-5 transition-all duration-200",
+                  "bg-[var(--item-color-schema)]/95 text-black font-semibold",
+                  "hover:-translate-y-0.5 hover:bg-[var(--item-color-schema)] hover:shadow-[0_0_30px_-10px_var(--item-color-schema)]"
                 )}
               >
                 <Link href="/contact" className="flex items-center gap-2">
@@ -204,10 +229,10 @@ export function Navbar() {
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
               className={cn(
-                "lg:hidden relative h-10 w-10 rounded-lg",
+                "lg:hidden relative h-10 w-10 rounded-xl border border-white/15",
                 "flex items-center justify-center",
                 "text-[var(--muted-foreground)] transition-all duration-200",
-                "hover:bg-white/10 hover:text-white",
+                "bg-white/[0.03] hover:bg-white/10 hover:text-white",
                 isMenuOpen && "bg-white/10 text-white"
               )}
             >
@@ -222,7 +247,7 @@ export function Navbar() {
       </header>
 
       {/* Spacer for fixed header */}
-      <div className="h-20" />
+      <div className="h-[88px]" />
 
       {/* Mobile Menu Overlay */}
       <div
@@ -243,23 +268,23 @@ export function Navbar() {
         <div
           className={cn(
             "absolute right-0 top-0 h-full w-full max-w-sm",
-            "bg-[#0b0b0b] shadow-2xl",
+            "border-l border-white/10 bg-[#070707]/95 shadow-2xl backdrop-blur-2xl",
             "transform transition-transform duration-300 ease-out",
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           )}
         >
           <div className="flex h-full flex-col">
             {/* Mobile Header */}
-            <div className="flex h-20 items-center justify-between px-6 border-b border-white/10">
-              <img
+            <div className="flex h-20 items-center justify-between border-b border-white/10 px-6">
+              {/* <img
                 src={logoImage.src}
                 alt="Enwiya Lawfare"
-                className="h-10 w-auto"
-              />
+                className="h-9 w-auto"
+              /> */}
               <button
                 onClick={() => setIsMenuOpen(false)}
                 aria-label="Close menu"
-                className="h-10 w-10 rounded-lg flex items-center justify-center text-[var(--muted-foreground)] hover:bg-white/10 hover:text-white transition-all duration-200"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-[var(--muted-foreground)] transition-all duration-200 hover:bg-white/10 hover:text-white"
               >
                 <X className="h-6 w-6" strokeWidth={2} />
               </button>
@@ -275,12 +300,12 @@ export function Navbar() {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "group flex items-center gap-3 rounded-xl px-4 py-4",
+                        "group flex items-center gap-3 rounded-2xl px-4 py-4",
                         "text-lg font-medium transition-all duration-200",
-                        "border border-transparent",
+                        "border",
                         isActive
-                          ? "bg-[var(--primary-accent)]/10 text-[var(--primary-accent)] border-[var(--primary-accent)]/20"
-                          : "text-gray-300 hover:bg-white/5 hover:text-white hover:border-white/10"
+                          ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
+                          : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
                       )}
                       style={{
                         animationDelay: `${index * 50}ms`,
@@ -300,12 +325,12 @@ export function Navbar() {
                   onClick={() => setIsPracticeMenuOpen((prev) => !prev)}
                   aria-expanded={isPracticeMenuOpen}
                   className={cn(
-                    "group flex w-full items-center justify-between rounded-xl px-4 py-4",
+                    "group flex w-full items-center justify-between rounded-2xl px-4 py-4",
                     "text-lg font-medium transition-all duration-200",
-                    "border border-transparent",
+                    "border",
                     isPracticeRoute || isPracticeMenuOpen
-                      ? "bg-[var(--primary-accent)]/10 text-[var(--primary-accent)] border-[var(--primary-accent)]/20"
-                      : "text-gray-300 hover:bg-white/5 hover:text-white hover:border-white/10"
+                      ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
+                      : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
                   )}
                 >
                   <span className="flex items-center gap-3">
@@ -332,9 +357,9 @@ export function Navbar() {
                     <Link
                       href="/practice-area"
                       className={cn(
-                        "rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-200",
+                        "rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-200",
                         pathname === "/practice-area"
-                          ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/10 text-[var(--primary-accent)]"
+                          ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
                           : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
                       )}
                     >
@@ -347,9 +372,9 @@ export function Navbar() {
                           key={area.href}
                           href={area.href}
                           className={cn(
-                            "rounded-lg border px-3 py-2 text-sm transition-all duration-200",
+                            "rounded-xl border px-3 py-2 text-sm transition-all duration-200",
                             isActive
-                              ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/10 text-[var(--primary-accent)]"
+                              ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
                               : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
                           )}
                         >
@@ -367,10 +392,9 @@ export function Navbar() {
               <Button
                 asChild
                 className={cn(
-                  "w-full py-6 text-base font-semibold",
+                  "w-full rounded-xl border border-[var(--primary-accent)]/30 py-6 text-base font-semibold",
                   "bg-[var(--primary-accent)] text-black",
-                  "hover:bg-[var(--primary-accent)]/90",
-                  "shadow-lg hover:shadow-xl transition-all duration-200"
+                  "transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--primary-accent)]/95 hover:shadow-[0_0_30px_-10px_var(--primary-accent)]"
                 )}
               >
                 <Link href="/contact" className="flex items-center justify-center gap-2">
@@ -378,9 +402,9 @@ export function Navbar() {
                   Free Consultation
                 </Link>
               </Button>
-              <p className="mt-4 text-center text-sm text-gray-500">
+              {/* <p className="mt-4 text-center text-sm text-gray-500">
                 Available 24/7 for emergencies
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -390,211 +414,3 @@ export function Navbar() {
 }
 
 
-
-// "use client";
-// import Link from "next/link";
-// import { usePathname } from "next/navigation";
-// import { useState, useEffect } from "react";
-// import { cn } from "../../lib/utils";
-// import { Button } from "./ui/button";
-// import {
-//   NavigationMenu,
-//   NavigationMenuItem,
-//   NavigationMenuList,
-// } from "./ui/navigation-menu";
-// import logoImage from "../../utils/img/fulllogo_transparent.png";
-
-// const navItems = [
-//   { name: "Home", href: "/" },
-//   { name: "About", href: "/about" },
-//   { name: "Reviews", href: "/reviews" },
-//   { name: "Stories", href: "/stories" },
-//   { name: "Practice Areas", href: "/practice-area" },
-//   { name: "Contact", href: "/contact" },
-// ];
-
-// export function Navbar() {
-//   const pathname = usePathname();
-//   const [open, setOpen] = useState(false);
-
-//   // prevent body scroll when mobile menu is open
-//   useEffect(() => {
-//     if (typeof window === "undefined") return;
-//     document.body.style.overflow = open ? "hidden" : "";
-//     return () => {
-//       document.body.style.overflow = "";
-//     };
-//   }, [open]);
-
-//   return (
-//     <div className="flex">
-//       {pathname.startsWith("/AdminPage") ? null : (
-//         <header className=" sticky top-0 z-50 w-full bg-[var(--headder-navbar-color)] to-transparent backdrop-blur  border-border">
-//           {/* Absolute logo anchored to the far left */}
-//           <div style={{ display: "flex" }}>
-//           <div className="flex-1 relative">
-//             {/* <Link href="/" className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2"> */}
-//             <img
-//               src={logoImage.src}
-//               alt="Enwiya Lawfare Logo"
-//               className="h-10 md:h-15 pt-2 ml-5 w-auto"
-//             />
-//             {/* </Link> */}
-//           </div>
-
-//           <div style={{float:"right"}} className="flex-1 mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:pl-20">
-//             {/* Site title (kept as link) */}
-//             {/* <Link href="/" className="flex items-center gap-2">
-//           <span className="text-lg font-semibold tracking-wide text-[#d4af37]">
-//             Enwiya Lawfare
-//           </span>
-//         </Link> */}
-
-//             {/* Desktop Navigation */}
-//             <NavigationMenu className="hidden md:flex">
-//               <NavigationMenuList className="gap-6">
-//                 {navItems.map((item) => {
-//                   const isActive = pathname === item.href;
-
-//                   return (
-//                     <NavigationMenuItem key={item.name}>
-//                       <Link
-//                         href={item.href}
-//                         className={cn(
-//                           "text-sm font-medium transition-colors",
-//                           isActive
-//                             ? "text-[var(--primary-accent)]"
-//                             : "text-[var(--muted-foreground)] hover:text-[var(--primary-accent)]",
-//                         )}
-//                       >
-//                         {item.name}
-//                       </Link>
-//                     </NavigationMenuItem>
-//                   );
-//                 })}
-//               </NavigationMenuList>
-//             </NavigationMenu>
-
-//             {/* CTA (desktop) */}
-//             <div className="hidden md:flex">
-//               <Button asChild>
-//                 <Link href="/contact">Free Consultation</Link>
-//               </Button>
-//             </div>
-
-//             {/* Mobile Menu (hamburger) */}
-//             <div className="md:hidden">
-//               <button
-//                 aria-label={open ? "Close menu" : "Open menu"}
-//                 onClick={() => setOpen((v) => !v)}
-//                 className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-transparent text-[var(--muted-foreground)] hover:bg-[var(--card)]/6"
-//               >
-//                 {!open ? (
-//                   <svg
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     className="h-6 w-6"
-//                     fill="none"
-//                     viewBox="0 0 24 24"
-//                     stroke="currentColor"
-//                   >
-//                     <path
-//                       strokeLinecap="round"
-//                       strokeLinejoin="round"
-//                       strokeWidth={2}
-//                       d="M4 6h16M4 12h16M4 18h16"
-//                     />
-//                   </svg>
-//                 ) : (
-//                   <svg
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     className="h-6 w-6"
-//                     fill="none"
-//                     viewBox="0 0 24 24"
-//                     stroke="currentColor"
-//                   >
-//                     <path
-//                       strokeLinecap="round"
-//                       strokeLinejoin="round"
-//                       strokeWidth={2}
-//                       d="M6 18L18 6M6 6l12 12"
-//                     />
-//                   </svg>
-//                 )}
-//               </button>
-//             </div>
-//           </div>
-//           </div>
-//         </header>
-//       )}
-
-//       {/* Mobile menu panel */}
-//       {open && (
-//         <div className="fixed inset-0 z-50 md:hidden">
-//           <div
-//             className="absolute inset-0 bg-[#0b0b0b]/95 backdrop-blur"
-//             onClick={() => setOpen(false)}
-//           />
-//           <nav className="relative z-50 h-full w-full overflow-auto">
-//             <div className="flex h-full flex-col gap-6 p-6">
-//               <div className="flex items-center justify-between">
-//                 <Link href="/" className="flex items-center gap-2">
-//                   <img
-//                     src={logoImage.src}
-//                     alt="Enwiya Lawfare Logo"
-//                     className="h-10 w-auto"
-//                   />
-//                 </Link>
-//                 <button
-//                   aria-label="Close menu"
-//                   onClick={() => setOpen(false)}
-//                   className="h-10 w-10 rounded-md bg-transparent text-[var(--muted-foreground)]"
-//                 >
-//                   <svg
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     className="h-6 w-6"
-//                     fill="none"
-//                     viewBox="0 0 24 24"
-//                     stroke="currentColor"
-//                   >
-//                     <path
-//                       strokeLinecap="round"
-//                       strokeLinejoin="round"
-//                       strokeWidth={2}
-//                       d="M6 18L18 6M6 6l12 12"
-//                     />
-//                   </svg>
-//                 </button>
-//               </div>
-
-//               <div className="mt-4 grid grid-cols-2 gap-4">
-//                 {navItems.map((item) => (
-//                   <Link
-//                     key={item.href}
-//                     href={item.href}
-//                     onClick={() => setOpen(false)}
-//                     className={cn(
-//                       "text-lg font-medium",
-//                       pathname === item.href
-//                         ? "text-[var(--primary-accent)]"
-//                         : "text-white",
-//                     )}
-//                   >
-//                     {item.name}
-//                   </Link>
-//                 ))}
-//               </div>
-
-//               <div className="mt-auto">
-//                 <Button asChild className="w-full bg-[var(--headder-text-color)] text-black">
-//                   <Link href="/contact" onClick={() => setOpen(false)}>
-//                     Free Consultation
-//                   </Link>
-//                 </Button>
-//               </div>
-//             </div>
-//           </nav>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }

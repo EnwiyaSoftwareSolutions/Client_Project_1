@@ -84,6 +84,7 @@ export function Footer() {
   })
 
   const displayOffices = preferredOffice ? [preferredOffice] : officeList.slice(0, 1)
+  const generatedYear = new Date().getFullYear()
 
   return (
     <div>
@@ -221,10 +222,17 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} Enwiya Lawfirm. All rights reserved.
           </p>
+         
           <p className="md:text-right">
             Attorney Advertising. Prior results do not guarantee a similar outcome.
           </p>
+         
         </div>
+        <div className="relative top-[30px] flex items-center justify-center text-xs uppercase tracking-[0.08em] text-[var(--muted-foreground)]/90 md:flex-row md:text-left">
+          <p >
+            Developed by Enwiya Software Solutions, LLC. {generatedYear}
+          </p>
+          </div>
       </div>
     </footer>
        )}

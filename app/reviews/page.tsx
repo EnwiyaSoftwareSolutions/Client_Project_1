@@ -55,7 +55,9 @@ export default function Reviews() {
                       className="h-12 w-12 flex-none rounded-full object-cover ring-2 ring-[var(--setBorderColorGold)]"
                     /> */}
                     
-                    <div className="h-12 w-12 flex-none rounded-full bg-[var(--setBorderColorGold)] flex items-center justify-center text-[var(--headder-text-color)] font-bold">
+                    <div 
+                    className="h-12 w-12 flex-none rounded-full border border-[var(--setBorderColorGold)] bg-gradient-to-br from-[var(--boxgradient-color)]/25 via-[var(--primary-accent)]/20 to-transparent font-bold tracking-wide text-[var(--headder-text-color)] shadow-md flex items-center justify-center text-[var(--headder-text-color)] font-bold"
+                    >
                       {r.reviewer_name.split(" ").map((n) => n[0]).join("").toUpperCase()}
                     </div>
 

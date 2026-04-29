@@ -55,11 +55,13 @@
   --setBorderColorGold: #a97c20d9;
   --headder-navbar-color: #696969a2;
   --navbar-font-color: #ffffff;
+  --item-color-schema: #f5c26b;
 
   /* --gloabal-font:  */
 }
 
 :root {
+  --test:#8a6719;
   --radius: 0.625rem;
   --background: #f3f0e8;
   --foreground: #171411;
@@ -98,7 +100,8 @@
 
   /* --headder-text-color:  #d4af37; */
   /* --headder-text-color: #7b5a16; */
-    --headder-text-color: #f5c26b;
+    --item-color-schema: #f5c26b;
+     --headder-text-color: #e6a83c;
 
   --color-text-color: #000000;
   /* --boxgradient-color: #b88b29; */

@@ -5,10 +5,10 @@ const About = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="min-h-screen text-[var(--foreground)]">
+    <div className="min-h-screen -mt-[88px] text-[var(--foreground)]">
 
       {/* ── Hero Banner ──────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--foreground)] via-[#1c1610] to-[#0d0b07] py-28 px-6">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--foreground)] via-[#1c1610] to-[#0d0b07] pt-[calc(7rem+88px)] pb-28 px-6">
         {/* decorative gold orb */}
         <div className="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[var(--primary-accent)]/10 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[var(--boxgradient-color)]/10 blur-2xl" />
@@ -54,7 +54,7 @@ const About = () => {
           {/* Biography Section */}
           <section className="mb-14">
             <div className="flex items-center gap-3 mb-6">
-              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--headder-text-color)]" />
               <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
                 Biography
               </h2>
@@ -83,7 +83,7 @@ const About = () => {
           {/* Education Narrative Section */}
           <section className="mb-14">
             <div className="flex items-center gap-3 mb-6">
-              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--headder-text-color)]" />
               <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
                 Education
               </h2>
@@ -109,7 +109,7 @@ const About = () => {
           {/* Personal Interests Section */}
           <section className="mt-4">
             <div className="flex items-center gap-3 mb-6">
-              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--headder-text-color)]" />
               <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
                 Personal Interests
               </h2>
@@ -122,7 +122,7 @@ const About = () => {
           {/* Credentials Accordion */}
           <section className="mt-14 mb-14">
             <div className="flex items-center gap-3 mb-6">
-              <span className="inline-block w-1 h-7 rounded-full bg-[var(--primary-accent)]" />
+              <span className="inline-block w-1 h-7 rounded-full bg-[var(--headder-text-color)]" />
               <h2 className="text-2xl font-semibold text-[var(--headder-text-color)]">
                 Credentials &amp; Professional Profile
               </h2>
@@ -132,7 +132,7 @@ const About = () => {
                 {
                   key: "Practice",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z" /></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)]  drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z" /></svg></span>
                   ),
                   title: "Areas of Practice",
                   content: (
@@ -155,11 +155,11 @@ const About = () => {
                   title: "Bar Admissions",
                   content: (
                     <>
-                      <ul className="list-disc list-inside text-gray-200 mb-2">
-                        <li className="text-[var(--muted-foreground)]">Arizona 2019</li>
-                        <li className="text-[var(--muted-foreground)]">Minnesota, 2023</li>
-                        <li className="text-[var(--muted-foreground)]">North Dakota, 2021</li>
-                        <li className="text-[var(--muted-foreground)]">State Bar of New Mexico (Inactive)</li>
+                      <ul className="list-disc list-inside text-[var(--muted-foreground)] mb-2">
+                        <li>Arizona 2019</li>
+                        <li>Minnesota, 2023</li>
+                        <li>North Dakota, 2021</li>
+                        <li>State Bar of New Mexico (Inactive)</li>
                       </ul>
 
                     </>
