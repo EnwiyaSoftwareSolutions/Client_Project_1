@@ -1,48 +1,83 @@
+"use client"
+
+import { useEffect } from "react"
+
 import ReviewCarousel from "../components/ui/Review"
-import reviews from "../data/review"
+import {useReviews} from "../../store/useReviews"
 
 export default function Reviews() {
+ const reviews = useReviews((state) => state.reviews)
+  const isLoading = useReviews((state) => state.isLoading)
+  const isError = useReviews((state) => state.isError)
+  const fetchReviews = useReviews((state) => state.fetchReviews)
+
+
+    useEffect(()=>{
+    void fetchReviews()
+  }, [fetchReviews])
   return (
-    <main className="mx-auto max-w-6xl px-6 py-16">
-      <header className="mb-8 text-center">
-        <h1 className="text-3xl font-semibold text-white
-">Client Reviews & Testimonials</h1>
-        <p className="mt-2 max-w-2xl mx-auto text-muted-foreground">
-          We pride ourselves on delivering excellent results for our clients. Read
-          a selection of recent client reviews below, or use the carousel to
-          browse featured testimonials.
-        </p>
-      </header>
+    <main className="min-h-screen text-[var(--foreground)]">
+      <div className="container mx-auto max-w-6xl px-6 py-16">
+        <header className="mb-8 text-center">
+          <h1 className="text-3xl md:text-4xl font-semibold text-[var(--headder-text-color)]">
+            Client Reviews & Testimonials
+          </h1>
+          <p className="mt-2 max-w-2xl mx-auto text-[var(--muted-foreground)]">
+            We pride ourselves on delivering excellent results for our clients. Read a selection of recent client reviews below, or browse featured testimonials.
+          </p>
+        </header>
 
-      <section className="grid gap-8 md:grid-cols-2">
-        <div>
-          <div className="rounded-lg border bg-card p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-medium">Featured Testimonials</h2>
-            <ReviewCarousel />
-          </div>
-        </div>
-
-        <aside>
-          <div className="space-y-4">
-            <h2 className="text-xl font-medium text-white">Recent Reviews</h2>
-            <p className="text-sm text-muted-foreground">Browse recent feedback from clients.</p>
-
-            <div className="mt-4 space-y-4">
-              {reviews.slice(0, 6).map((r) => (
-                <article key={r.id} className="flex items-start gap-4 rounded-md border bg-background p-4">
-                  <img src={r.image} alt={r.name} className="h-12 w-12 flex-none rounded-full object-cover" />
-                  <div>
-                    <p className="font-semibold">{r.name}</p>
-                    <p className="text-xs text-muted-foreground">{r.job}</p>
-                    <p className="mt-2 text-sm text-zinc-400">{r.text.substring(0, 120)}{r.text.length > 120 ? "..." : ""}</p>
-                  </div>
-                </article>
-              ))}
+        <section className="grid gap-8 md:grid-cols-2">
+          <div>
+            <div className="relative bg-gradient-to-br from-[var( --boxgradient-color)]/30 via-[var(--primary-accent)]/10 to-transparent border border-[var(--setBorderColorGold)] rounded-xl shadow-xl p-8 flex flex-col items-start">
+              <h2 className="mb-4 text-xl font-bold text-[var(--headder-text-color)]">Featured Testimonials</h2>
+              <ReviewCarousel />
+              <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none text-[var(--headder-text-color)]">★</span>
             </div>
           </div>
-        </aside>
-      </section>
+
+          <aside>
+            <div className="relative bg-gradient-to-br from-[var( --boxgradient-color)]/30 via-[var(--primary-accent)]/10 to-transparent border border-[var(--setBorderColorGold)] rounded-xl shadow-xl p-8">
+              <h2 className="text-xl font-bold text-[var(--headder-text-color)] mb-2">Recent Reviews</h2>
+              <p className="text-sm text-[var(--muted-foreground)] mb-4">Browse recent feedback from clients.</p>
+              <div className="theme-scrollbar space-y-4 max-h-[600px] overflow-y-auto p-[8px] pr-2">
+                {isError && (
+                  <p className="text-sm text-red-300">Unable to load reviews right now.</p>
+                )}
+                {isLoading && reviews.length === 0 && (
+                  <p className="text-sm text-[var(--muted-foreground)]">Loading reviews...</p>
+                )}
+                {reviews.slice(0, 6).map((r, idx) => (
+                  <article key={r.$id ?? r.id ?? idx} className="flex items-start gap-4 rounded-lg border border-[var(--setBorderColorGold)] bg-[var(--card)]/10 p-4 shadow group hover:scale-[1.02] transition-transform">
+                    {/* <img
+                      src={r.image}
+                      alt={r.name}
+                      className="h-12 w-12 flex-none rounded-full object-cover ring-2 ring-[var(--setBorderColorGold)]"
+                    /> */}
+                    
+                    <div 
+                    className="h-12 w-12 flex-none rounded-full border border-[var(--setBorderColorGold)] bg-gradient-to-br from-[var(--boxgradient-color)]/25 via-[var(--primary-accent)]/20 to-transparent font-bold tracking-wide text-[var(--headder-text-color)] shadow-md flex items-center justify-center text-[var(--headder-text-color)] font-bold"
+                    >
+                      {r.reviewer_name.split(" ").map((n) => n[0]).join("").toUpperCase()}
+                    </div>
+
+                    <div>
+                      <p className="font-semibold text-[var(--headder-text-color)]">{r.reviewer_name}</p>
+                      {/* <p className="text-xs text-[var(--muted-foreground)]">{r.job}</p> */}
+                      <p className="mt-2 text-sm text-[var(--muted-foreground)]">
+                        {r.comment.substring(0, 120)}
+                        {r.comment.length > 120 ? "..." : ""}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <span className="absolute right-6 top-6 opacity-10 text-7xl pointer-events-none select-none">★</span>
+            </div>
+          </aside>
+        </section>
+      </div>
     </main>
   )
 }
-
+// ...existing code...

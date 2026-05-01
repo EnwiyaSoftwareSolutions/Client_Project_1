@@ -13,93 +13,120 @@ import {
   CardContent,
   CardFooter,
 } from "./ui/card"
-  import {useMessageStore} from '../../store/useMessageStore'
+import { useMessageStore } from "../../store/useMessageStore"
+import { userRegister } from "../../store/useUserRegisterStore"
+
+type ContactFormValues = {
+  name: string
+  email: string
+  phone: string
+  subject: string
+  message: string
+}
 
 export function ContactForm() {
-  const [values, setValues] = useState({
+  const setMessage = useMessageStore((state) => state.setMessage)
+  const sendMSG = useMessageStore((state) => state.sendMSG)
+  const saveRegister = userRegister((state) => state.saveRegister)
+  const [values, setValues] = useState<ContactFormValues>({
     name: "",
     email: "",
     phone: "",
     subject: "",
     message: "",
   })
+
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const setMsg = useMessageStore((state: any) => state.setMessage);
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function onChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     const { name, value } = e.target
-    setValues((v) => ({ ...v, [name]: value }))
+    setValues((prev) => ({ ...prev, [name]: value }))
   }
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
+    if (submitting || submitted) return
+
     setSubmitting(true)
 
     try {
-      // Placeholder: replace with your real API call
-      await new Promise((r) => setTimeout(r, 700))
-      // console.log('submit', values)
+      await Promise.all([
+        sendMSG(values),
+        saveRegister({
+          full_name: values.name,
+          user_email: values.email,
+          user_phonenumber: values.phone,
+        }),
+      ])
+
+      setMessage(values)
       setSubmitted(true)
-    } catch (err) {
-      // handle error (show toast, etc.)
-      console.error(err)
+    } catch (error) {
+      console.error("Failed to submit contact form:", error)
     } finally {
       setSubmitting(false)
     }
   }
 
   return (
-    <Card className="w-full bg-[#0000007a] border border-yellow-400 shadow-lg">
+    <Card className="w-full bg-(--card)/80 border border-(--headder-text-color) shadow-lg">
       <form onSubmit={onSubmit}>
         <CardHeader>
-          <CardTitle className="text-yellow-400">Contact Enwiya Lawfare</CardTitle>
-          <CardDescription className="text-gray-300 pb-3">
-            Send us a message for a free consultation. We respond to all
-            enquiries within 1-2 business days.
+          <CardTitle className="text-(--headder-text-color) font-(--font-geist-sans)">
+            Contact Enwiya Law firm
+          </CardTitle>
+          <CardDescription className="text-muted-foreground pb-3 font-[var(--font-geist-sans)]">
+            Send us a message for a free consultation. We respond within 1–2
+            business days.
           </CardDescription>
         </CardHeader>
-{/* #323232 */}
+
         <CardContent>
           {submitted ? (
-            <div className="rounded-md bg-yellow-400/20 p-4 text-yellow-200 border border-yellow-400">
-              Thank you — your message has been received. We'll be in touch
+            <div className="rounded-md bg-(--headder-text-color)/20 p-4 text-(--primary-accent) border border-(--headder-text-color)">
+              Thank you — your message has been received. We&apos;ll be in touch
               shortly.
             </div>
           ) : (
             <div className="grid gap-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
+                  <Input
                   name="name"
                   placeholder="Full name"
                   value={values.name}
                   onChange={onChange}
+                  required
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
                 <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
                   name="email"
                   type="email"
                   placeholder="Email address"
                   value={values.email}
                   onChange={onChange}
+                  required
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
               </div>
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
                   name="phone"
-                  placeholder="Phone (optional)"
+                  placeholder="Phone"
                   value={values.phone}
                   onChange={onChange}
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
                 <Input
-                  className="text-gray-200 bg-[#323232] border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500"
                   name="subject"
                   placeholder="Subject"
                   value={values.subject}
                   onChange={onChange}
+                  className="bg-card text-muted-foreground border-(--headder-text-color) focus:border-(--primary-accent) focus:ring-(--primary-accent)"
                 />
               </div>
 
@@ -108,10 +135,11 @@ export function ContactForm() {
                 placeholder="How can we help you?"
                 value={values.message}
                 onChange={onChange}
+                required
                 className={cn(
-                  "min-h-[120px] w-full resize-none rounded-md border bg-[#323232] px-3 py-2 text-sm shadow-xs text-gray-200",
-                  "border-yellow-400 focus:border-yellow-500 focus:ring-yellow-500 focus:ring-[3px]",
-                  "text-sm md:text-base"
+                  "min-h-30 w-full resize-none rounded-md bg-card px-3 py-2 text-sm text-muted-foreground",
+                  "border border-(--headder-text-color) shadow-xs",
+                  "focus:border-(--primary-accent) focus:ring-(--primary-accent) focus:ring-[3px]"
                 )}
               />
             </div>
@@ -119,11 +147,13 @@ export function ContactForm() {
         </CardContent>
 
         <CardFooter>
-          <div className="ml-auto w-full md:w-auto pt-3">
-            <Button type="submit" disabled={submitting || submitted} className="w-full md:w-auto bg-yellow-400 text-black hover:bg-yellow-500 focus:ring-yellow-500">
-              {submitting ? "Sending..." : submitted ? "Sent" : "Send Message"}
-            </Button>
-          </div>
+          <Button
+            type="submit"
+            disabled={submitting || submitted}
+            className="ml-auto bg-(--item-color-schema) focus:ring-(--primary-accent) mt-[10px]"
+          >
+            {submitting ? "Sending..." : submitted ? "Sent" : "Send Message"}
+          </Button>
         </CardFooter>
       </form>
     </Card>

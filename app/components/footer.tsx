@@ -1,50 +1,143 @@
-
+"use client"
+import Image from "next/image"
 import Link from "next/link"
 import { Separator } from "./ui/separator"
 import logoImage from '../../utils/img/fulllogo_transparent.png'
+import { usePathname } from "next/navigation"
+import { useEffect } from "react"
+import { ArrowRight, Mail, MapPin, Phone, Scale } from "lucide-react"
+import { OfficeInfo, useOfficeInfoStore } from "../../store/useOfficeInfoStore"
+
+const ZERO_WIDTH = "\u200B"
+
+const withHiddenSeparators = (value: string) => value.split("").join(ZERO_WIDTH)
+const keepDialableChars = (value: string) => value.replace(/[^\d+]/g, "")
+
+function SafePhone({ phone }: { phone?: string }) {
+  if (!phone) {
+    return <span>Phone unavailable</span>
+  }
+
+  const dialValue = keepDialableChars(phone)
+  const obfuscatedDisplay = withHiddenSeparators(phone)
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        if (!dialValue) return
+        window.location.href = `tel:${dialValue}`
+      }}
+      className="text-left transition-colors hover:text-[var(--primary-accent)]"
+      aria-label="Call us"
+    >
+      {obfuscatedDisplay}
+    </button>
+  )
+}
+
+function SafeEmail({ email }: { email?: string }) {
+  if (!email) {
+    return <span>Email unavailable</span>
+  }
+
+  const [local, domain] = email.split("@")
+
+  if (!local || !domain) {
+    return <span>{email}</span>
+  }
+
+  const obfuscatedDisplay = withHiddenSeparators(`${local}@${domain}`)
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        const actualEmail = `${local}@${domain}`
+        window.location.href = `mailto:${actualEmail}`
+      }}
+      className="break-all text-left transition-colors hover:text-[var(--primary-accent)]"
+      aria-label="Send us an email"
+    >
+      {obfuscatedDisplay}
+    </button>
+  )
+}
 
 
 export function Footer() {
+  const pathname = usePathname();
+  const officeInfo = useOfficeInfoStore((state) => state.officeInfo)
+  const fetchOfficeInfo = useOfficeInfoStore((state) => state.fetchOfficeInfo)
+
+  useEffect(() => {
+    void fetchOfficeInfo()
+  }, [fetchOfficeInfo])
+
+  const officeList: OfficeInfo[] = officeInfo?.documents ?? []
+
+  const preferredOffice = officeList.find((office) => {
+    const rawName = office.office_name ?? office.name ?? ""
+    return rawName.trim().toLowerCase() === "enwiya law firm"
+  })
+
+  const displayOffices = preferredOffice ? [preferredOffice] : officeList.slice(0, 1)
+  const generatedYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-[#0000007a] text-zinc-300">
-      <div className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+    <div>
+       {pathname.startsWith("/AdminPage") ? null : (
+    <footer className="relative overflow-hidden border-t border-[var(--setBorderColorGold)]/40 bg-gradient-to-br from-[var(--background)] via-[var(--background)] to-[var(--boxgradient-color)]/10 text-[var(--muted-foreground)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--primary-accent)]/70 to-transparent" />
+      <div className="pointer-events-none absolute -left-24 top-8 h-56 w-56 rounded-full bg-[var(--primary-accent)]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 bottom-8 h-56 w-56 rounded-full bg-[var(--primary-accent)]/10 blur-3xl" />
+
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           
           {/* Brand */}
           <div>
-            <h2 className="text-xl font-semibold tracking-wide text-[#d4af37]">
-              <img src={logoImage.src} alt="Enwiya Lawfare Logo" className="h-10 md:h-50 w-auto" />
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+            <Link href="/" className="inline-flex items-center transition-opacity position-relative hover:opacity-85">
+              <Image src={logoImage} alt="Enwiya Lawfare Logo" className="h-[120px] w-auto" priority />
+            </Link>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[var(--muted-foreground)]/90">
               Dedicated to justice, integrity, and results. Providing
               strategic legal representation with professionalism and care.
             </p>
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[var(--setBorderColorGold)]/40 bg-[var(--primary-accent)]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--headder-text-color)]">
+              <Scale className="h-3.5 w-3.5" />
+              Client-first legal counsel
+            </div>
           </div>
 
           {/* Practice Areas */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-200">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--headder-text-color)]">
               Practice Areas
             </h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="#" className="hover:text-[#d4af37] transition">
-                  Corporate Law
+                <Link href="/practice-area/corporate" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
+                  Business & Corporate Law
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#d4af37] transition">
-                  Criminal Defense
+                <Link href="/practice-area/estate" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
+                  Estate Planning
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#d4af37] transition">
-                  Family Law
+                <Link href="/practice-area/probate" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
+                  Probate
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-[#d4af37] transition">
-                  Civil Litigation
+                <Link href="/practice-area/immigration" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
+                  Immigration
                 </Link>
               </li>
             </ul>
@@ -52,59 +145,95 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-200">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--headder-text-color)]">
               Company
             </h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/about" className="hover:text-[#d4af37] transition">
+                <Link href="/about" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/stories" className="hover:text-[#d4af37] transition">
-                  Case Stories
+                <Link href="/reviews" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
+                  Client Reviews
                 </Link>
               </li>
               <li>
-                <Link href="/achievements" className="hover:text-[#d4af37] transition">
-                  Achievements
+                <Link href="/practice-areas" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
+                  Practice Areas
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#d4af37] transition">
+                <Link href="/contact" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
-
           {/* Contact */}
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-200">
-              Contact
-            </h3>
-            <ul className="space-y-2 text-sm text-zinc-400">
-              <li>📍 New York, NY</li>
-              <li>📞 (212) 555-0198</li>
-              <li>✉️ contact@enwiyalawfare.com</li>
-            </ul>
-          </div>
+          {displayOffices.map((i)=>{
+            return (
+              <div key={i.$id ?? i.id ?? i.office_email ?? i.office_phone_number}>
+                <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--headder-text-color)]">
+                  Contact
+                </h3>
+                <ul className="space-y-3 text-sm text-[var(--muted-foreground)]">
+                  <li className="flex items-start gap-3">
+                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
+                    <span>{i.office_address || i.mailing_address}</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
+                    <SafePhone phone={i.office_phone_number} />
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
+                    <SafeEmail email={i.office_email} />
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
+                    <a className="break-all transition-colors hover:text-[var(--primary-accent)]">{i.mailing_address}</a>
+                  </li>
+                </ul>
+                <Link
+                  href="/contact"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-[var(--setBorderColorGold)]/50 bg-[var(--primary-accent)]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-[var(--headder-text-color)] transition-all hover:-translate-y-0.5 hover:bg-[var(--primary-accent)]/20"
+                >
+                  Book consultation
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            )
+          })}
 
         </div>
 
-        <Separator className="my-10 bg-zinc-800" />
+        <Separator className="my-10 bg-[var(--setBorderColorGold)]/30" />
 
         {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-4 text-sm text-zinc-500 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 text-center text-xs uppercase tracking-[0.08em] text-[var(--muted-foreground)]/90 md:flex-row md:text-left">
           <p>
-            © {new Date().getFullYear()} Enwiya Lawfare. All rights reserved.
+            © {new Date().getFullYear()} Enwiya Lawfirm. All rights reserved.
           </p>
-          <p className="text-center md:text-right">
+         
+          <p className="md:text-right">
             Attorney Advertising. Prior results do not guarantee a similar outcome.
           </p>
+         
         </div>
+        <div className="relative top-[30px] flex items-center justify-center text-xs uppercase tracking-[0.08em] text-[var(--muted-foreground)]/90 md:flex-row md:text-left">
+          <p >
+            Developed by Enwiya Software Solutions, LLC. {generatedYear}
+          </p>
+          </div>
       </div>
     </footer>
+       )}
+    </div>
   )
 }
