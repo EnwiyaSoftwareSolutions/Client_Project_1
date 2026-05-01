@@ -1,4 +1,5 @@
 "use client"
+import { useEffect } from "react"
 import ContactForm from "../components/contact-form"
 import { OfficeInfo, useOfficeInfoStore } from "../../store/useOfficeInfoStore"
 
@@ -62,9 +63,9 @@ export default function ContactPage() {
     const officeInfo = useOfficeInfoStore((state) => state.officeInfo)
     const fetchOfficeInfo = useOfficeInfoStore((state) => state.fetchOfficeInfo)
 
-    if (!officeInfo) {
+    useEffect(() => {
         void fetchOfficeInfo()
-    }
+    }, [fetchOfficeInfo])
 
     const officeList: OfficeInfo[] = officeInfo?.documents ?? []
 

@@ -25,7 +25,8 @@ type ContactFormValues = {
 }
 
 export function ContactForm() {
-  const { setMessage, sendMSG } = useMessageStore()
+  const setMessage = useMessageStore((state) => state.setMessage)
+  const sendMSG = useMessageStore((state) => state.sendMSG)
   const saveRegister = userRegister((state) => state.saveRegister)
   const [values, setValues] = useState<ContactFormValues>({
     name: "",

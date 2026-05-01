@@ -71,10 +71,8 @@ export function Footer() {
   const fetchOfficeInfo = useOfficeInfoStore((state) => state.fetchOfficeInfo)
 
   useEffect(() => {
-    if (!officeInfo) {
-      void fetchOfficeInfo()
-    }
-  }, [fetchOfficeInfo, officeInfo])
+    void fetchOfficeInfo()
+  }, [fetchOfficeInfo])
 
   const officeList: OfficeInfo[] = officeInfo?.documents ?? []
 
@@ -99,8 +97,8 @@ export function Footer() {
           
           {/* Brand */}
           <div>
-            <Link href="/" className="inline-flex items-center transition-opacity hover:opacity-85">
-              <Image src={logoImage} alt="Enwiya Lawfare Logo" className="h-12 w-auto" priority />
+            <Link href="/" className="inline-flex items-center transition-opacity position-relative hover:opacity-85">
+              <Image src={logoImage} alt="Enwiya Lawfare Logo" className="h-[120px] w-auto" priority />
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-[var(--muted-foreground)]/90">
               Dedicated to justice, integrity, and results. Providing

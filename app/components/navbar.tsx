@@ -126,7 +126,7 @@ export function Navbar() {
               <img
                 src={logoImage.src}
                 alt="Enwiya Lawfare"
-                className="h-9 w-auto sm:h-10"
+                className="h-9 w-auto sm:h-12"
               />
             </Link>
 
@@ -171,8 +171,8 @@ export function Navbar() {
                         {/* <ChevronDown className="h-3.5 w-3.5" /> */}
                       </span>
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="m-0 w-auto bg-transparent p-0">
-                      <div className="w-[320px] rounded-xl border border-white/10 bg-[#0b0b0b]/95 p-2 shadow-2xl backdrop-blur-2xl">
+                    <NavigationMenuContent className="m-0 w-auto !bg-transparent p-0">
+                      <div className="w-[320px] mt-[10px] rounded-xl border border-white/10 bg-[#0b0b0b]/80 p-2 shadow-2xl backdrop-blur-2xl">
                         <Link
                           href="/practice-area"
                           className="mb-1 block rounded-lg px-3 py-2 text-sm font-semibold text-[var(--headder-text-color)] transition-colors hover:bg-white/5 hover:text-[var(--primary-accent)]"
