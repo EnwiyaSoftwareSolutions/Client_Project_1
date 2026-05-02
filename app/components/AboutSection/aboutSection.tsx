@@ -53,7 +53,7 @@ function AboutSection() {
       <div className="absolute inset-0 z-20" style={{ background: "linear-gradient(to right, transparent 0%, rgba(11,11,11,0.55) 40%, rgba(11,11,11,0.92) 70%)" }} />
 
       {/* ── Text content (right side) ────────────────────────────── */}
-      <div className="relative z-30 flex items-center justify-end min-h-[560px] px-6 py-20">
+      <div className="relative z-30 flex mr-[30px] items-center justify-end min-h-[560px] px-6 py-20">
         <div className="w-full max-w-md">
           <p className="text-[var(--primary-accent)] text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             Who We Are
@@ -63,9 +63,8 @@ function AboutSection() {
           </h2>
           <div className="w-12 h-1 bg-[var(--primary-accent)] rounded-full mb-6" />
           <p className="text-[var(--navbar-font-color)]/75 text-lg leading-relaxed mb-5">
-            At Enwiya Law Firm, I am committed to providing exceptional legal
-            representation. With years of experience, I deliver personalized
-            solutions to complex legal challenges.
+            Enwiya Law Firm was founded on the principle that legal services should be dependable and tailored to the circumstances of each client. Each matter is approached with   
+            careful attention to detail and thoughtful commitment to the client's objectives.
           </p>
           <p className="text-[var(--navbar-font-color)]/75 text-lg leading-relaxed mb-8">
             My mission is to uphold justice, protect your interests, and guide
