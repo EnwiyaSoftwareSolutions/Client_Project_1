@@ -11,28 +11,31 @@ import { OfficeInfo, useOfficeInfoStore } from "../../store/useOfficeInfoStore"
 const ZERO_WIDTH = "\u200B"
 
 const withHiddenSeparators = (value: string) => value.split("").join(ZERO_WIDTH)
-const keepDialableChars = (value: string) => value.replace(/[^\d+]/g, "")
+// const keepDialableChars = (value: string) => value.replace(/[^\d+]/g, "")
 
 function SafePhone({ phone }: { phone?: string }) {
   if (!phone) {
     return <span>Phone unavailable</span>
   }
 
-  const dialValue = keepDialableChars(phone)
+  // const dialValue = keepDialableChars(phone)
   const obfuscatedDisplay = withHiddenSeparators(phone)
 
   return (
-    <button
-      type="button"
-      onClick={() => {
-        if (!dialValue) return
-        window.location.href = `tel:${dialValue}`
-      }}
-      className="text-left transition-colors hover:text-[var(--primary-accent)]"
-      aria-label="Call us"
-    >
-      {obfuscatedDisplay}
-    </button>
+    <span className="text-[var(--muted-foreground)]">
+            {obfuscatedDisplay}
+        </span>
+    // <button
+    //   type="button"
+    //   onClick={() => {
+    //     if (!dialValue) return
+    //     window.location.href = `tel:${dialValue}`
+    //   }}
+    //   className="text-left transition-colors hover:text-[var(--primary-accent)]"
+    //   aria-label="Call us"
+    // >
+    //   {obfuscatedDisplay}
+    // </button>
   )
 }
 

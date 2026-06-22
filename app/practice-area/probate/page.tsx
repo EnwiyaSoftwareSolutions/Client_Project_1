@@ -52,15 +52,15 @@ const Probate = () => {
                             <h2 className="text-lg font-semibold text-[var(--headder-text-color)]">How We Help</h2>
                             <ul className="mt-4 space-y-3 text-sm text-[var(--muted-foreground)]">
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Structured support for fiduciaries and beneficiaries
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Careful handling of claims, notices, and distributions
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Clear process guidance from opening through final accounting
                                 </li>
                             </ul>

@@ -52,15 +52,15 @@ const Estate = () => {
                             <h2 className="text-lg font-semibold text-[var(--headder-text-color)]">How We Help</h2>
                             <ul className="mt-4 space-y-3 text-sm text-[var(--muted-foreground)]">
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Customized plans based on your family and financial goals
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Practical strategies to reduce probate exposure and uncertainty
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Ongoing updates as your life and assets evolve
                                 </li>
                             </ul>

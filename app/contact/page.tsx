@@ -7,7 +7,6 @@ import { OfficeInfo, useOfficeInfoStore } from "../../store/useOfficeInfoStore"
 const ZERO_WIDTH = "\u200B"
 
 const withHiddenSeparators = (value: string) => value.split("").join(ZERO_WIDTH)
-const keepDialableChars = (value: string) => value.replace(/[^\d+]/g, "")
 
 function SafeEmail({ email }: { email?: string }) {
     if (!email) {
@@ -41,21 +40,12 @@ function SafePhone({ phone }: { phone?: string }) {
         return <span className="text-[var(--muted-foreground)]">Phone unavailable</span>
     }
 
-    const dialValue = keepDialableChars(phone)
     const obfuscatedDisplay = withHiddenSeparators(phone)
 
     return (
-        <button
-            type="button"
-            onClick={() => {
-                if (!dialValue) return
-                window.location.href = `tel:${dialValue}`
-            }}
-            className="text-left text-[var(--muted-foreground)] transition-colors hover:text-[var(--primary-accent)]"
-            aria-label="Call us"
-        >
+        <span className="text-[var(--muted-foreground)]">
             {obfuscatedDisplay}
-        </button>
+        </span>
     )
 }
 

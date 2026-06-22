@@ -53,15 +53,15 @@ const Corporate = () => {
                             <h2 className="text-lg font-semibold text-[var(--headder-text-color)]">How We Help</h2>
                             <ul className="mt-4 space-y-3 text-sm text-[var(--muted-foreground)]">
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Clear, practical legal guidance tied to business goals
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Risk-aware contract and transaction strategy
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Long-term planning for ownership transitions and continuity
                                 </li>
                             </ul>

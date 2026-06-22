@@ -1,4 +1,4 @@
-
+"use client"
 import { useEffect, useRef, useState, useCallback, type CSSProperties } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -104,7 +104,7 @@ function AboutSection() {
       </div>
 
       {/* ── Carousel arrows ──────────────────────────────────────── */}
-      <button
+      {/* <button
         onClick={() => go(current - 1)}
         aria-label="Previous image"
         className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-[var(--headder-navbar-color)]/60 hover:bg-[var(--primary-accent)]/20 border border-[var(--setBorderColorGold)]/30 hover:border-[var(--primary-accent)]/60 text-[var(--navbar-font-color)] rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 text-xl"
@@ -117,7 +117,7 @@ function AboutSection() {
         className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-[var(--headder-navbar-color)]/60 hover:bg-[var(--primary-accent)]/20 border border-[var(--setBorderColorGold)]/30 hover:border-[var(--primary-accent)]/60 text-[var(--navbar-font-color)] rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 text-xl"
       >
         ›
-      </button>
+      </button> */}
 
     </section>
   )

@@ -12,7 +12,7 @@ export default function MarqueeReviews() {
   }, [fetchReviews])
   
 
-  const marqueeReviews = reviews.length > 0 ? [...reviews, ...reviews] : []
+  const marqueeReviews = reviews.length > 0 ? [...reviews] : []
     return (
         
  <section className="py-16">

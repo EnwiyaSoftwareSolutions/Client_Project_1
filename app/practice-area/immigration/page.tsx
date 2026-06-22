@@ -52,15 +52,15 @@ const Immigration = () => {
                             <h2 className="text-lg font-semibold text-[var(--headder-text-color)]">How We Help</h2>
                             <ul className="mt-4 space-y-3 text-sm text-[var(--muted-foreground)]">
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Personalized case strategy tailored to your goals
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Thorough preparation for filings and interviews
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <FaCheckCircle className="mt-0.5 text-[var(--headder-text-color)]" aria-hidden />
+                                    <FaCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-[var(--headder-text-color)]" aria-hidden />
                                     Clear communication at each stage of the process
                                 </li>
                             </ul>

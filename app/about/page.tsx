@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 
 const About = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openKeys, setOpenKeys] = useState<Set<string>>(
+    () => new Set(["Practice", "Admission", "Education", "Associations"])
+  );
 
   return (
     <div className="min-h-screen -mt-[88px] text-[var(--foreground)]">
@@ -132,17 +134,17 @@ const About = () => {
                 {
                   key: "Practice",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)]  drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M17 20H7v-2h10v2zm1-4H6c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1zm-1-6V7c0-2.21-1.79-4-4-4s-4 1.79-4 4v3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2zm-6-3c0-1.1.9-2 2-2s2 .9 2 2v3h-4V7z" /></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)]  drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.35C18 2.53 15.48 1 12 1S6 2.53 6 4.65c0 .47.1.91.18 1.35H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-8-3c2.7 0 4 .96 4 1.65S13.7 6.3 12 6.3 8 5.34 8 4.65 9.3 3 12 3zm8 16H4V8h16v11z" /></svg></span>
                   ),
                   title: "Areas of Practice",
                   content: (
                     <>
-                      <ul className="list-disc list-inside text-[var(--muted-foreground)] mb-2">
-                        <li>Business Corporate Law</li>
-                        <li>Contract Law</li>
-                        <li>Immigration Law</li>
-                        <li>Estate Planning</li>
-                        <li>Probate</li>
+                      <ul className="mb-2 space-y-2 text-[var(--muted-foreground)]">
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">Business Corporate Law</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">Contract Law</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">Immigration Law</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">Estate Planning</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">Probate</li>
                       </ul>
                     </>
                   ),
@@ -150,16 +152,16 @@ const About = () => {
                 {
                   key: "Admission",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" /></svg></span>
-                  ),
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+                    </span>),
                   title: "Bar Admissions",
                   content: (
                     <>
-                      <ul className="list-disc list-inside text-[var(--muted-foreground)] mb-2">
-                        <li>Arizona 2019</li>
-                        <li>Minnesota, 2023</li>
-                        <li>North Dakota, 2021</li>
-                        <li>State Bar of New Mexico (Inactive)</li>
+                      <ul className="list-disc  list-inside text-[var(--muted-foreground)] mb-2">
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">Arizona 2019</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">Minnesota, 2023</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">North Dakota, 2021</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">State Bar of New Mexico (Inactive)</li>
                       </ul>
 
                     </>
@@ -168,7 +170,7 @@ const About = () => {
                 {
                   key: "Education",
                   icon: (
-                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg></span>
+                    <span className="mb-4"><svg className="text-4xl text-[var(--headder-text-color)] drop-shadow" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z" /></svg></span>
                   ),
                   title: "Education",
                   content: (
@@ -211,18 +213,18 @@ const About = () => {
                   content: (
                     <>
 
-                      <ul className="list-disc list-inside text-gray-200 mb-2">
-                        <li className="text-[var(--muted-foreground)]">State Bar of Arizona, Member</li>
-                        <li className="text-[var(--muted-foreground)]">State Bar of Minnesota, Member</li>
-                        <li className="text-[var(--muted-foreground)]">State Bar of North Dakota, Member</li>
-                        <li className="text-[var(--muted-foreground)]">State Bar of New Mexico, Member</li>
+                      <ul className="list-disc list-inside mb-2">
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">State Bar of Arizona, Member</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">State Bar of Minnesota, Member</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">State Bar of North Dakota, Member</li>
+                        <li className="flex items-start gap-3 before:content-['-'] before:font-bold before:text-[var(--headder-text-color)]">State Bar of New Mexico, Member</li>
                       </ul>
 
                     </>
                   ),
                 },
               ].map((area, idx) => {
-                const isOpen = openIndex === idx;
+                const isOpen = openKeys.has(area.key);
                 return (
                   <div
                     key={area.key}
@@ -231,12 +233,22 @@ const About = () => {
                     {/* accordion header */}
                     <button
                       className="flex items-center justify-between w-full px-8 py-6 text-left cursor-pointer focus:outline-none group"
-                      onClick={() => setOpenIndex(isOpen ? null : idx)}
+                      onClick={() =>
+                        setOpenKeys((prev) => {
+                          const next = new Set(prev);
+                          if (next.has(area.key)) {
+                            next.delete(area.key);
+                          } else {
+                            next.add(area.key);
+                          }
+                          return next;
+                        })
+                      }
                       aria-expanded={isOpen}
                     >
                       <div className="flex items-center gap-4">
                         <span className="text-[var(--headder-text-color)]">{area.icon}</span>
-                        <span className="text-lg font-bold text-[var(--headder-text-color)] group-hover:text-[var(--boxgradient-color)] transition-colors">
+                        <span className="text-lg font-bold text-[var(--headder-text-color)]  transition-colors">
                           {area.title}
                         </span>
                       </div>

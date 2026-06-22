@@ -19,8 +19,9 @@ import logoImage from "../../utils/img/fulllogo_transparent.png";
 const navItems = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Reviews", href: "/reviews" },
+  // { name: "Reviews", href: "/reviews" },
   { name: "Contact", href: "/contact" },
+  // { name: "Blog", href: "/blog" }
 ];
 
 const practiceAreaItems = [

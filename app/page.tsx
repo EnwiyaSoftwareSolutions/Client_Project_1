@@ -51,7 +51,7 @@ export default function Home() {
       {/* Services Section */}
       <OurServices />
       {/* Testimonials Section */}
-      <MarqueeReviews />
+      {/* <MarqueeReviews /> */}
       {/* Contact CTA Section */}
       <section className="py-16 px-6 ">
         <div className="container mx-auto max-w-6xl text-center ">
