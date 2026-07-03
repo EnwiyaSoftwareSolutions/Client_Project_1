@@ -1,5 +1,6 @@
 import {create} from 'zustand'
 import axios from 'axios';
+import { getApiBaseUrl } from './api'
 
 export type OfficeInfo = {
   id?:number;
@@ -37,7 +38,7 @@ export const useOfficeInfoStore = create<OfficeInfoStore>((set, get) => ({
     set({ isFetchingOfficeInfo: true });
 
     try {
-      const response = await axios.get<OfficeInfoResponse>('http://localhost:9000/fetch-office-info');
+      const response = await axios.get<OfficeInfoResponse>(`${getApiBaseUrl()}/fetch-office-info`);
       set({
         officeInfo: response.data,
         isFetchingOfficeInfo: false,

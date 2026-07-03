@@ -1,5 +1,6 @@
 import {create} from 'zustand'
 import axios from 'axios';
+import { getApiBaseUrl } from './api'
 
 type Register = {
   full_name: string,
@@ -37,7 +38,7 @@ export const userRegister = create<RegisterStore>((set) => ({
   saveRegister: async (payload: RegisterPayload): Promise<void> => {
     set({ isLoading: true, isError: false });
     try {
-      const response = await axios.post<Register>('http://localhost:9000/client_register', payload, {
+      const response = await axios.post<Register>(`${getApiBaseUrl()}/client_register`, payload, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -55,7 +56,7 @@ export const userRegister = create<RegisterStore>((set) => ({
   fetchRegister: async ():Promise<void> => {
     set({ isLoading: true, isError: false });
     try {
-      const response = await axios.get<Register[] | RegisterListResponse>('http://localhost:9000/fetch_users',{
+      const response = await axios.get<Register[] | RegisterListResponse>(`${getApiBaseUrl()}/fetch_users`,{
         headers:{
           'Content-Type': 'application/json'
         }

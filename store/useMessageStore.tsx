@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import axios from "axios"
+import { getApiBaseUrl } from "./api"
 
 type ContactFormValues = {
   name: string
@@ -35,7 +36,7 @@ export const useMessageStore = create<MessageStore>((set) => ({
   sendMSG: async (msg: ContactFormValues) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.post('http://localhost:9000/send-email', msg, {
+      const response = await axios.post(`${getApiBaseUrl()}/send-email`, msg, {
         headers: {
           'Content-Type': 'application/json',
         },

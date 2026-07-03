@@ -1,5 +1,6 @@
 import {create} from 'zustand'
 import axios from 'axios';
+import { getApiBaseUrl } from './api'
 
 
 type Review = {
@@ -24,7 +25,7 @@ export const useReviews = create<ReviewsStore>((set) => ({
     fetchReviews: async (): Promise<void> => {
         set({ isLoading: true, isError: false })
         try {
-            const response = await axios.get<Review[]>('http://localhost:9000/fetch_reviews',{
+            const response = await axios.get<Review[]>(`${getApiBaseUrl()}/fetch_reviews`,{
                 headers: {
                     'Content-Type': 'application/json'
                 }
