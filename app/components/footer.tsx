@@ -158,14 +158,14 @@ export function Footer() {
                   About Us
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/reviews" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
                   <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
                   Client Reviews
                 </Link>
-              </li>
+              </li> */}
               <li>
-                <Link href="/practice-areas" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
+                <Link href="/practice-area" className="inline-flex items-center gap-2 transition-colors hover:text-[var(--primary-accent)]">
                   <ArrowRight className="h-3.5 w-3.5 text-[var(--primary-accent)]/80" />
                   Practice Areas
                 </Link>
@@ -200,7 +200,7 @@ export function Footer() {
                   </li>
                   <li className="flex items-start gap-3">
                     <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary-accent)]" />
-                    <a className="break-all transition-colors hover:text-[var(--primary-accent)]">{i.mailing_address}</a>
+                    <a className="block max-w-[200px] break-words whitespace-normal transition-colors hover:text-[var(--primary-accent)]">{i.mailing_address}</a>
                   </li>
                 </ul>
                 <Link
