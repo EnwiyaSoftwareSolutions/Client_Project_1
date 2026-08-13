@@ -1,35 +1,35 @@
-import {create} from 'zustand'
-import axios from 'axios';
-import { getApiBaseUrl } from './api'
+import { create } from "zustand";
+import axios from "axios";
+import { getApiBaseUrl } from "./api";
 
 type Register = {
-  full_name: string,
-  user_email:string,
-  user_phonenumber:string,
-  is_client?: boolean,
-  is_active?: boolean,
-  timestamp?: string,
-  created_at?: string,
-}
+  full_name: string;
+  user_email: string;
+  user_phonenumber: string;
+  is_client?: boolean;
+  is_active?: boolean;
+  timestamp?: string;
+  created_at?: string;
+};
 
 type RegisterListResponse = {
-  total: number,
-  documents: Register[],
-}
+  total: number;
+  documents: Register[];
+};
 
 export type RegisterPayload = {
-  full_name: string,
-  user_email: string,
-  user_phonenumber: string,
-}
+  full_name: string;
+  user_email: string;
+  user_phonenumber: string;
+};
 
-export type RegisterStore ={
-  register: Register[],
-  isLoading: boolean,
-  isError:boolean,
-  saveRegister: (payload: RegisterPayload) => Promise<void>
-  fetchRegister: () => Promise<void>
-}
+export type RegisterStore = {
+  register: Register[];
+  isLoading: boolean;
+  isError: boolean;
+  saveRegister: (payload: RegisterPayload) => Promise<void>;
+  fetchRegister: () => Promise<void>;
+};
 
 export const userRegister = create<RegisterStore>((set) => ({
   register: [],
@@ -38,11 +38,15 @@ export const userRegister = create<RegisterStore>((set) => ({
   saveRegister: async (payload: RegisterPayload): Promise<void> => {
     set({ isLoading: true, isError: false });
     try {
-      const response = await axios.post<Register>(`${getApiBaseUrl()}/client_register`, payload, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await axios.post<Register>(
+        `${getApiBaseUrl()}/client_register`,
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
       set((state) => ({
         register: [...state.register, response.data],
@@ -53,20 +57,23 @@ export const userRegister = create<RegisterStore>((set) => ({
       throw error;
     }
   },
-  fetchRegister: async ():Promise<void> => {
+  fetchRegister: async (): Promise<void> => {
     set({ isLoading: true, isError: false });
     try {
-      const response = await axios.get<Register[] | RegisterListResponse>(`${getApiBaseUrl()}/fetch_users`,{
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await axios.get<Register[] | RegisterListResponse>(
+        `${getApiBaseUrl()}/fetch_users`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
       const registerData = Array.isArray(response.data)
         ? response.data
-        : response.data.documents ?? [];
+        : (response.data.documents ?? []);
 
       set({ register: registerData, isLoading: false });
-    } catch (error) {
+    } catch {
       set({ isError: true, isLoading: false });
     }
   },

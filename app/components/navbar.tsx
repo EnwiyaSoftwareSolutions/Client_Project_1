@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { cn } from "../../lib/utils";
@@ -81,17 +82,14 @@ export function Navbar() {
     };
   }, [isMenuOpen]);
 
-  // Close menu on route change (skip initial mount)
-  const isInitialMount = useRef(true);
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
+  // Close menu on route change using the render-time state adjustment pattern
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setIsMobileHeaderVisible(true);
     setIsMenuOpen(false);
     setIsPracticeMenuOpen(false);
-  }, [pathname]);
+  }
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
@@ -107,7 +105,7 @@ export function Navbar() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transform transition-all duration-300 ease-in-out lg:translate-y-0",
-       
+          isMobileHeaderVisible ? "translate-y-0" : "-translate-y-full",
         )}
       >
         <div className="mx-auto max-w-7xl px-3 pt-3 sm:px-6 lg:px-8">
@@ -116,17 +114,18 @@ export function Navbar() {
               "flex h-16 items-center justify-between rounded-2xl border px-3 sm:px-4",
               isScrolled || isMenuOpen
                 ? "border-white/15 bg-[#050505]/75 shadow-[0_12px_45px_-20px_rgba(0,0,0,0.9)]"
-                : "border-white/10 bg-[#080808]/90"
+                : "border-white/10 bg-[#080808]/90",
             )}
           >
             {/* Logo */}
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="flex flex-shrink-0 items-center transition-opacity duration-200 hover:opacity-85"
             >
-              <img
-                src={logoImage.src}
-                alt="Enwiya Lawfare"
+              <Image
+                src={logoImage}
+                alt="Enwiya Law Firm"
+                priority
                 className="h-9 w-auto sm:h-12"
               />
             </Link>
@@ -145,7 +144,7 @@ export function Navbar() {
                             "relative rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
                             isActive
                               ? "bg-[var(--item-color-schema)]/15 text-[var(--item-color-schema)]"
-                              : "text-[var(--navbar-font-color)] hover:bg-white/8 hover:text-[var(--item-color-schema)]"
+                              : "text-[var(--navbar-font-color)] hover:bg-white/8 hover:text-[var(--item-color-schema)]",
                           )}
                         >
                           {item.name}
@@ -159,13 +158,12 @@ export function Navbar() {
 
                   <NavigationMenuItem>
                     <NavigationMenuTrigger
-                     className={cn(
-                            "relative rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
-                            isPracticeRoute
-                              ? "bg-[var(--primary-accent)]/15 text-[var(--item-color-schema)]"
-                              : "text-[var(--navbar-font-color)] hover:bg-white/8 hover:text-[var(--item-color-schema)]"
-                          )}
-                    
+                      className={cn(
+                        "relative rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200",
+                        isPracticeRoute
+                          ? "bg-[var(--primary-accent)]/15 text-[var(--item-color-schema)]"
+                          : "text-[var(--navbar-font-color)] hover:bg-white/8 hover:text-[var(--item-color-schema)]",
+                      )}
                     >
                       <span className="inline-flex items-center gap-1.5">
                         Practice Areas
@@ -181,26 +179,26 @@ export function Navbar() {
                           View All Practice Areas
                         </Link>
                         <ul className="space-y-1">
-                        {practiceAreaItems.map((area) => {
-                          const isActive = pathname === area.href;
-                          return (
-                            <li key={area.href}>
-                              <NavigationMenuLink asChild>
-                                <Link
-                                  href={area.href}
-                                  className={cn(
-                                    "block rounded-lg px-3 py-2 text-sm transition-colors",
-                                    isActive
-                                      ? "bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
-                                      : "text-white/90 hover:bg-white/5 hover:text-[var(--primary-accent)]"
-                                  )}
-                                >
-                                  {area.name}
-                                </Link>
-                              </NavigationMenuLink>
-                            </li>
-                          );
-                        })}
+                          {practiceAreaItems.map((area) => {
+                            const isActive = pathname === area.href;
+                            return (
+                              <li key={area.href}>
+                                <NavigationMenuLink asChild>
+                                  <Link
+                                    href={area.href}
+                                    className={cn(
+                                      "block rounded-lg px-3 py-2 text-sm transition-colors",
+                                      isActive
+                                        ? "bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
+                                        : "text-white/90 hover:bg-white/5 hover:text-[var(--primary-accent)]",
+                                    )}
+                                  >
+                                    {area.name}
+                                  </Link>
+                                </NavigationMenuLink>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     </NavigationMenuContent>
@@ -214,7 +212,7 @@ export function Navbar() {
                 className={cn(
                   "ml-1 rounded-full border border-[var(--item-color-schema)]/30 px-5 transition-all duration-200",
                   "bg-[var(--item-color-schema)]/95 text-black font-semibold",
-                  "hover:-translate-y-0.5 hover:bg-[var(--item-color-schema)] hover:shadow-[0_0_30px_-10px_var(--item-color-schema)]"
+                  "hover:-translate-y-0.5 hover:bg-[var(--item-color-schema)] hover:shadow-[0_0_30px_-10px_var(--item-color-schema)]",
                 )}
               >
                 <Link href="/contact" className="flex items-center gap-2">
@@ -234,7 +232,7 @@ export function Navbar() {
                 "flex items-center justify-center",
                 "text-[var(--muted-foreground)] transition-all duration-200",
                 "bg-white/[0.03] hover:bg-white/10 hover:text-white",
-                isMenuOpen && "bg-white/10 text-white"
+                isMenuOpen && "bg-white/10 text-white",
               )}
             >
               {isMenuOpen ? (
@@ -256,7 +254,7 @@ export function Navbar() {
           "fixed inset-0 z-40 lg:hidden transition-all duration-300",
           isMenuOpen
             ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            : "opacity-0 pointer-events-none",
         )}
       >
         {/* Backdrop */}
@@ -271,7 +269,7 @@ export function Navbar() {
             "absolute right-0 top-0 h-full w-full max-w-sm",
             "border-l border-white/10 bg-[#070707]/95 shadow-2xl backdrop-blur-2xl",
             "transform transition-transform duration-300 ease-out",
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
+            isMenuOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
           <div className="flex h-full flex-col">
@@ -306,16 +304,20 @@ export function Navbar() {
                         "border",
                         isActive
                           ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
-                          : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
+                          : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white",
                       )}
                       style={{
                         animationDelay: `${index * 50}ms`,
                       }}
                     >
-                      <span className={cn(
-                        "w-2 h-2 rounded-full transition-all duration-200",
-                        isActive ? "bg-[var(--primary-accent)]" : "bg-gray-600 group-hover:bg-gray-400"
-                      )} />
+                      <span
+                        className={cn(
+                          "w-2 h-2 rounded-full transition-all duration-200",
+                          isActive
+                            ? "bg-[var(--primary-accent)]"
+                            : "bg-gray-600 group-hover:bg-gray-400",
+                        )}
+                      />
                       {item.name}
                     </Link>
                   );
@@ -331,7 +333,7 @@ export function Navbar() {
                     "border",
                     isPracticeRoute || isPracticeMenuOpen
                       ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
-                      : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
+                      : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white",
                   )}
                 >
                   <span className="flex items-center gap-3">
@@ -340,7 +342,7 @@ export function Navbar() {
                         "h-2 w-2 rounded-full transition-all duration-200",
                         isPracticeRoute || isPracticeMenuOpen
                           ? "bg-[var(--primary-accent)]"
-                          : "bg-gray-600 group-hover:bg-gray-400"
+                          : "bg-gray-600 group-hover:bg-gray-400",
                       )}
                     />
                     Practice Areas
@@ -348,7 +350,7 @@ export function Navbar() {
                   <ChevronDown
                     className={cn(
                       "h-4 w-4 transition-transform duration-200",
-                      isPracticeMenuOpen && "rotate-180"
+                      isPracticeMenuOpen && "rotate-180",
                     )}
                   />
                 </button>
@@ -361,7 +363,7 @@ export function Navbar() {
                         "rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-200",
                         pathname === "/practice-area"
                           ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
-                          : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
+                          : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white",
                       )}
                     >
                       View All Practice Areas
@@ -376,7 +378,7 @@ export function Navbar() {
                             "rounded-xl border px-3 py-2 text-sm transition-all duration-200",
                             isActive
                               ? "border-[var(--primary-accent)]/30 bg-[var(--primary-accent)]/15 text-[var(--primary-accent)]"
-                              : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white"
+                              : "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/5 hover:text-white",
                           )}
                         >
                           {area.name}
@@ -395,10 +397,13 @@ export function Navbar() {
                 className={cn(
                   "w-full rounded-xl border border-[var(--primary-accent)]/30 py-6 text-base font-semibold",
                   "bg-[var(--primary-accent)] text-black",
-                  "transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--primary-accent)]/95 hover:shadow-[0_0_30px_-10px_var(--primary-accent)]"
+                  "transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--primary-accent)]/95 hover:shadow-[0_0_30px_-10px_var(--primary-accent)]",
                 )}
               >
-                <Link href="/contact" className="flex items-center justify-center gap-2">
+                <Link
+                  href="/contact"
+                  className="flex items-center justify-center gap-2"
+                >
                   <Phone className="h-5 w-5" />
                   Free Consultation
                 </Link>
@@ -413,5 +418,3 @@ export function Navbar() {
     </>
   );
 }
-
-

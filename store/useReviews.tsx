@@ -1,47 +1,45 @@
-import {create} from 'zustand'
-import axios from 'axios';
-import { getApiBaseUrl } from './api'
+import { create } from "zustand";
+import axios from "axios";
+import { getApiBaseUrl } from "./api";
 
-
-type Review = {
-    id?: number
-    $id?: string
-    comment: string
-    rating: number
-    reviewer_name: string
-}
+export type Review = {
+  id?: number;
+  $id?: string;
+  comment: string;
+  rating: number;
+  reviewer_name: string;
+};
 
 export type ReviewsStore = {
-    reviews: Review[]
-    isLoading: boolean
-    isError: boolean
-    fetchReviews: () => Promise<void>
-}
+  reviews: Review[];
+  isLoading: boolean;
+  isError: boolean;
+  fetchReviews: () => Promise<void>;
+};
 
 export const useReviews = create<ReviewsStore>((set) => ({
-    reviews: [],
-    isLoading: false,
-    isError: false,
-    fetchReviews: async (): Promise<void> => {
-        set({ isLoading: true, isError: false })
-        try {
-            const response = await axios.get<Review[]>(`${getApiBaseUrl()}/fetch_reviews`,{
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-                
-            })
+  reviews: [],
+  isLoading: false,
+  isError: false,
+  fetchReviews: async (): Promise<void> => {
+    set({ isLoading: true, isError: false });
+    try {
+      const response = await axios.get<Review[]>(
+        `${getApiBaseUrl()}/fetch_reviews`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
-            
-
-            set({ reviews: response.data, isLoading: false })
-        } catch (error) {
-            console.error("Error fetching reviews:", error)
-            set({ isLoading: false, isError: true })
-        }
+      set({ reviews: response.data, isLoading: false });
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      set({ isLoading: false, isError: true });
     }
-
-}))
+  },
+}));
 //     name: string
 //     job: string
 //     text: string
@@ -71,9 +69,6 @@ export const useReviews = create<ReviewsStore>((set) => ({
 // }))
 
 // export default useReviews
-
-
-
 
 // // import {create} from 'zustand';
 // // import data from '../app/data/review.json';
@@ -114,5 +109,3 @@ export const useReviews = create<ReviewsStore>((set) => ({
 // // ))
 
 // // export default useReviews;
-
-

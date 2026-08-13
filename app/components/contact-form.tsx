@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { useState } from "react"
-import { cn } from "../../lib/utils"
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
+import * as React from "react";
+import { useState } from "react";
+import { cn } from "../../lib/utils";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 import {
   Card,
   CardHeader,
@@ -12,46 +12,48 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "./ui/card"
-import { useMessageStore } from "../../store/useMessageStore"
-import { userRegister } from "../../store/useUserRegisterStore"
+} from "./ui/card";
+import { useMessageStore } from "../../store/useMessageStore";
+import { userRegister } from "../../store/useUserRegisterStore";
 
 type ContactFormValues = {
-  name: string
-  email: string
-  phone: string
-  subject: string
-  message: string
-}
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};
 
 export function ContactForm() {
-  const setMessage = useMessageStore((state) => state.setMessage)
-  const sendMSG = useMessageStore((state) => state.sendMSG)
-  const saveRegister = userRegister((state) => state.saveRegister)
+  const setMessage = useMessageStore((state) => state.setMessage);
+  const sendMSG = useMessageStore((state) => state.sendMSG);
+  const saveRegister = userRegister((state) => state.saveRegister);
   const [values, setValues] = useState<ContactFormValues>({
     name: "",
     email: "",
     phone: "",
     subject: "",
     message: "",
-  })
+  });
 
-  const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   function onChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
-    const { name, value } = e.target
-    setValues((prev) => ({ ...prev, [name]: value }))
+    const { name, value } = e.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
   }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (submitting || submitted) return
+    if (submitting || submitted) return;
 
-    setSubmitting(true)
+    setSubmitting(true);
+    setError(null);
 
     try {
       await Promise.all([
@@ -61,14 +63,16 @@ export function ContactForm() {
           user_email: values.email,
           user_phonenumber: values.phone,
         }),
-      ])
+      ]);
 
-      setMessage(values)
-      setSubmitted(true)
-    } catch (error) {
-      console.error("Failed to submit contact form:", error)
+      setMessage(values);
+      setSubmitted(true);
+    } catch {
+      setError(
+        "Something went wrong while sending your message. Please try again or contact us directly.",
+      );
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
   }
 
@@ -94,7 +98,7 @@ export function ContactForm() {
           ) : (
             <div className="grid gap-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  <Input
+                <Input
                   name="name"
                   placeholder="Full name"
                   value={values.name}
@@ -116,6 +120,7 @@ export function ContactForm() {
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <Input
                   name="phone"
+                  type="tel"
                   placeholder="Phone"
                   value={values.phone}
                   onChange={onChange}
@@ -139,9 +144,18 @@ export function ContactForm() {
                 className={cn(
                   "min-h-30 w-full resize-none rounded-md bg-card px-3 py-2 text-sm text-muted-foreground",
                   "border border-(--headder-text-color) shadow-xs",
-                  "focus:border-(--primary-accent) focus:ring-(--primary-accent) focus:ring-[3px]"
+                  "focus:border-(--primary-accent) focus:ring-(--primary-accent) focus:ring-[3px]",
                 )}
               />
+
+              {error && (
+                <p
+                  role="alert"
+                  className="rounded-md border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive"
+                >
+                  {error}
+                </p>
+              )}
             </div>
           )}
         </CardContent>
@@ -157,7 +171,7 @@ export function ContactForm() {
         </CardFooter>
       </form>
     </Card>
-  )
+  );
 }
 
-export default ContactForm
+export default ContactForm;
