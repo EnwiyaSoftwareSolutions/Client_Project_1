@@ -24,8 +24,8 @@ export default function Home() {
             aria-hidden="true"
           />
           <p className="text-xl md:text-2xl text-[var(--muted-foreground)] leading-relaxed mb-8 max-w-2xl mx-auto">
-            Expert legal services tailored to your needs. Protecting your rights
-            with integrity and professionalism.
+            Effective legal services tailored to your needs. Protecting your
+            rights with integrity and professionalism.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
