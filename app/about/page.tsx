@@ -84,8 +84,8 @@ const About = () => {
             {/* quick credential stats */}
             <div className="mt-7 flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-4">
               {[
-                { value: "4", label: "Bar Admissions" },
-                { value: "5+", label: "Practice Areas" },
+                // { value: "4", label: "Bar Admissions" },
+                // { value: "5+", label: "Practice Areas" },
                 { value: "J.D.", label: "Juris Doctor, 2018" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center md:text-left">
